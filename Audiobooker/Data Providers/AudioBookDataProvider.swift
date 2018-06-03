@@ -15,6 +15,7 @@ protocol IAudioBookDataProvider {
 
 class AudioBookDataProvider: IAudioBookDataProvider {
     private let fileManager = FileManager.default
+    private let coreDataManager = CoreDataManager()
     
     func loadListOfBooks(completion: ([AudioBook]) -> ()) {
         do {
