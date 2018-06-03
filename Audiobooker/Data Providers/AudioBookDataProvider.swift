@@ -10,7 +10,7 @@ import Foundation
 
 protocol IAudioBookDataProvider {
     func loadListOfBooks(completion: ([AudioBook]) -> ())
-    func loadListOfChapters(bookID: String, completion: ([AudioBook]) -> ())
+    func loadChaptersOf(book: AudioBook, completion: ([Chapter]) -> ())
 }
 
 class AudioBookDataProvider: IAudioBookDataProvider {
@@ -18,31 +18,48 @@ class AudioBookDataProvider: IAudioBookDataProvider {
     private let coreDataManager = CoreDataManager()
     
     func loadListOfBooks(completion: ([AudioBook]) -> ()) {
-        do {
-            var audioBooks: [AudioBook] = [AudioBook]()
-            let fileURLs = try fileManager.contentsOfDirectory(at: self.getDocumentsDirectory(), includingPropertiesForKeys: nil)
-            for fileUrl in fileURLs {
-                if fileUrl.hasDirectoryPath {
-                    let audioBook = AudioBook(bookURL: fileUrl)
-                    audioBooks.append(audioBook)
-                }
+        var audioBooks: [AudioBook] = [AudioBook]()
+        
+        let fileURLs = self.getContentsOfDirectory(documentsDirectory)
+        
+        for fileUrl in fileURLs {
+            if fileUrl.hasDirectoryPath {
+                let audioBook = AudioBook(bookURL: fileUrl)
+                audioBooks.append(audioBook)
             }
-            
-            completion(audioBooks)
-        } catch {
-            print("Error while enumerating files \(self.getDocumentsDirectory().path): \(error.localizedDescription)")
         }
+        
+        completion(audioBooks)
     }
     
-    func loadListOfChapters(bookID: String, completion: ([AudioBook]) -> ()) {
+    func loadChaptersOf(book: AudioBook, completion: ([Chapter]) -> ()) {
+        var chapters: [Chapter] = [Chapter]()
         
+        let fileURLs = self.getContentsOfDirectory(book.chaptersDirectoryPath)
+        for fileUrl in fileURLs {
+            if fileUrl.pathExtension == "mp3" {
+                let chapter = Chapter(chapterURL: fileUrl)
+                chapters.append(chapter)
+            }
+        }
+        
+        completion(chapters)
     }
 }
 
 private extension AudioBookDataProvider {
-    func getDocumentsDirectory() -> URL {
+    var documentsDirectory: URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
+    }
+    
+    func getContentsOfDirectory(_ url: URL) -> [URL] {
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+            return fileURLs
+        } catch {
+            return [URL]()
+        }
     }
 }

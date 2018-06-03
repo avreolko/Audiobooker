@@ -27,10 +27,20 @@ struct UIViewDecoratorConfig {
     
     static let audioBookCover: UIViewDecoratorConfig = {
         let config = UIViewDecoratorConfig(cornerRadius: 5,
-                                           shadowOpacity: 0.2,
-                                           backgroundColor: .clear,
+                                           shadowOpacity: 0.5,
+                                           backgroundColor: .white,
                                            shadowColor: UIColor.black.cgColor,
-                                           shadowRadius: 2)
+                                           shadowRadius: 5)
+        
+        return config
+    }()
+    
+    static let bigPanel: UIViewDecoratorConfig = {
+        let config = UIViewDecoratorConfig(cornerRadius: 5,
+                                           shadowOpacity: 0.2,
+                                           backgroundColor: .groupTableViewBackground,
+                                           shadowColor: UIColor.black.cgColor,
+                                           shadowRadius: 5)
         
         return config
     }()

@@ -9,8 +9,13 @@
 import Foundation
 
 struct Chapter {
-    let audioBookID: String
+    let audioBookID: String = ""
     let name: String
-    let progress: Double // 0-1
+    let progress: Double = 0 // 0-1
     let audioFilePath: URL
+    
+    init(chapterURL: URL) {
+        self.name = chapterURL.lastPathComponent
+        self.audioFilePath = chapterURL
+    }
 }
