@@ -42,4 +42,8 @@ final class AudioBooksListTableDelegate: NSObject, UITableViewDelegate, UITableV
             audioBookCell.setCoverPath(audioBook.coverPath)
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
 }

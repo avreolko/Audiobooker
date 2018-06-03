@@ -19,7 +19,7 @@ struct AudioBook {
         self.title = bookURL.lastPathComponent
         self.author = ""
         self.chaptersDirectoryPath = bookURL
-        self.coverPath = bookURL.appendingPathComponent("cover")
+        self.coverPath = bookURL.appendingPathComponent("cover.jpg")
         self.id = "kkkk"
     }
 }

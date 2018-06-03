@@ -10,6 +10,8 @@
 		A70368C420C3D30000A32029 /* AudioBookDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368C320C3D30000A32029 /* AudioBookDataProvider.swift */; };
 		A70368C620C3D38700A32029 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368C520C3D38700A32029 /* Chapter.swift */; };
 		A70368CA20C403DB00A32029 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368C920C403DB00A32029 /* CoreDataManager.swift */; };
+		A70368CD20C4063B00A32029 /* UIViewDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368CC20C4063B00A32029 /* UIViewDecorator.swift */; };
+		A70368D420C4083000A32029 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D320C4083000A32029 /* File.swift */; };
 		A741F82020C3B9E6003E2B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A741F81F20C3B9E6003E2B42 /* AppDelegate.swift */; };
 		A741F82220C3B9E6003E2B42 /* AudioBooksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A741F82120C3B9E6003E2B42 /* AudioBooksListViewController.swift */; };
 		A741F82520C3B9E6003E2B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A741F82320C3B9E6003E2B42 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		A70368C320C3D30000A32029 /* AudioBookDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookDataProvider.swift; sourceTree = "<group>"; };
 		A70368C520C3D38700A32029 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		A70368C920C403DB00A32029 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A70368CC20C4063B00A32029 /* UIViewDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDecorator.swift; sourceTree = "<group>"; };
+		A70368D320C4083000A32029 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		A741F81C20C3B9E6003E2B42 /* Audiobooker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audiobooker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A741F81F20C3B9E6003E2B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A741F82120C3B9E6003E2B42 /* AudioBooksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBooksListViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,31 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		A70368CB20C405F000A32029 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				A70368D220C4082300A32029 /* Configs */,
+				A70368CE20C406E300A32029 /* Protocols */,
+				A70368CC20C4063B00A32029 /* UIViewDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
+		A70368CE20C406E300A32029 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A70368D220C4082300A32029 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				A70368D320C4083000A32029 /* File.swift */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		A741F81320C3B9E6003E2B42 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +185,7 @@
 		A741F84020C3BA07003E2B42 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A70368CB20C405F000A32029 /* Decorators */,
 				A741F84E20C3C054003E2B42 /* Table Delegates */,
 				A741F85220C3C46D003E2B42 /* Cells */,
 				A70368C820C403BC00A32029 /* Controllers */,
@@ -311,12 +341,14 @@
 			files = (
 				A741F84B20C3BC54003E2B42 /* IAudioBooksListPresenter.swift in Sources */,
 				A741F85120C3C1DA003E2B42 /* AudioBooksListTableDelegate.swift in Sources */,
+				A70368CD20C4063B00A32029 /* UIViewDecorator.swift in Sources */,
 				A741F84520C3BAA9003E2B42 /* ChapterProgress.swift in Sources */,
 				A741F84D20C3BC70003E2B42 /* AudioBooksListPresenter.swift in Sources */,
 				A741F84320C3BA56003E2B42 /* AudioBook.swift in Sources */,
 				A741F85420C3C488003E2B42 /* AudioBookCell.swift in Sources */,
 				A70368CA20C403DB00A32029 /* CoreDataManager.swift in Sources */,
 				A741F82220C3B9E6003E2B42 /* AudioBooksListViewController.swift in Sources */,
+				A70368D420C4083000A32029 /* File.swift in Sources */,
 				A741F82020C3B9E6003E2B42 /* AppDelegate.swift in Sources */,
 				A70368C420C3D30000A32029 /* AudioBookDataProvider.swift in Sources */,
 				A741F84820C3BC0D003E2B42 /* IAudioBooksListView.swift in Sources */,
