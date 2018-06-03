@@ -1,24 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Audio Books List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AudioBooksListViewController" customModule="Audiobooker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lCl-Ye-33j">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioBookCellReuseID" rowHeight="200" id="0O1-Nh-d1L" userLabel="Audio Book Cell" customClass="AudioBookCell" customModule="Audiobooker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0O1-Nh-d1L" id="8OO-G7-MRK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-BP-ehs">
+                                                    <rect key="frame" x="157" y="21" width="193" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7HD-LO-Lae">
+                                                    <rect key="frame" x="25" y="20.5" width="120" height="160"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="hZ3-dB-IVm"/>
+                                                        <constraint firstAttribute="width" constant="120" id="kg6-vf-vxv"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7c2-sK-UeN">
+                                                    <rect key="frame" x="157" y="49" width="193" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7c2-sK-UeN" secondAttribute="trailing" constant="10" id="E8l-aD-5N6"/>
+                                                <constraint firstItem="7HD-LO-Lae" firstAttribute="leading" secondItem="8OO-G7-MRK" secondAttribute="leadingMargin" constant="10" id="HIK-fg-6hN"/>
+                                                <constraint firstItem="7c2-sK-UeN" firstAttribute="leading" secondItem="EpR-BP-ehs" secondAttribute="leading" id="KNj-k9-hI4"/>
+                                                <constraint firstItem="7c2-sK-UeN" firstAttribute="top" secondItem="EpR-BP-ehs" secondAttribute="bottom" constant="8" id="Y89-sS-4ld"/>
+                                                <constraint firstItem="EpR-BP-ehs" firstAttribute="leading" secondItem="7HD-LO-Lae" secondAttribute="trailing" constant="12" id="gHb-Rx-iwQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EpR-BP-ehs" secondAttribute="trailing" constant="10" id="izL-Rr-7c5"/>
+                                                <constraint firstItem="EpR-BP-ehs" firstAttribute="top" secondItem="7HD-LO-Lae" secondAttribute="top" id="m8m-Cc-bwI"/>
+                                                <constraint firstItem="7HD-LO-Lae" firstAttribute="centerY" secondItem="8OO-G7-MRK" secondAttribute="centerY" id="nAX-2r-TnF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="author" destination="7c2-sK-UeN" id="QFD-pP-CWO"/>
+                                            <outlet property="cover" destination="7HD-LO-Lae" id="j8I-Wd-N9K"/>
+                                            <outlet property="title" destination="EpR-BP-ehs" id="ZqN-Dy-DMS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lCl-Ye-33j" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0Gx-xC-zh2"/>
+                            <constraint firstItem="lCl-Ye-33j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9da-MJ-Ovn"/>
+                            <constraint firstItem="lCl-Ye-33j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="F2p-VL-FYG"/>
+                            <constraint firstItem="lCl-Ye-33j" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dqz-fO-kp7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="lCl-Ye-33j" id="xde-fX-7hR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
