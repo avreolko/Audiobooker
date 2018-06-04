@@ -127,22 +127,27 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mbf-i4-jzO">
+                                                <rect key="frame" x="315" y="172" width="20" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="mbf-i4-jzO" secondAttribute="bottom" constant="8" id="Jln-PF-v7A"/>
                                             <constraint firstItem="Hdm-xV-s3q" firstAttribute="leading" secondItem="uvW-RF-5j2" secondAttribute="trailing" constant="12" id="Oq6-lj-5Yn"/>
                                             <constraint firstItem="uvW-RF-5j2" firstAttribute="leading" secondItem="TMQ-c0-n7g" secondAttribute="leading" constant="25" id="ZZD-WY-4Z5"/>
                                             <constraint firstAttribute="trailing" secondItem="Hdm-xV-s3q" secondAttribute="trailing" constant="9" id="cgt-Hc-DAj"/>
                                             <constraint firstItem="Hdm-xV-s3q" firstAttribute="top" secondItem="YLV-B6-DaN" secondAttribute="bottom" constant="8" id="hMg-Ef-OTe"/>
                                             <constraint firstItem="uvW-RF-5j2" firstAttribute="centerY" secondItem="TMQ-c0-n7g" secondAttribute="centerY" id="kyE-wS-c1G"/>
                                             <constraint firstAttribute="trailing" secondItem="YLV-B6-DaN" secondAttribute="trailing" constant="9" id="mSp-fr-3me"/>
+                                            <constraint firstAttribute="trailing" secondItem="mbf-i4-jzO" secondAttribute="trailing" constant="8" id="ppP-Uv-GDk"/>
                                             <constraint firstItem="YLV-B6-DaN" firstAttribute="top" secondItem="uvW-RF-5j2" secondAttribute="top" id="srS-Ka-L6O"/>
                                             <constraint firstAttribute="height" constant="200" id="xQx-Qq-W1n"/>
                                             <constraint firstItem="YLV-B6-DaN" firstAttribute="leading" secondItem="uvW-RF-5j2" secondAttribute="trailing" constant="12" id="z9x-5k-LkY"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DuR-o5-irM">
-                                        <rect key="frame" x="0.0" y="208" width="343" height="363"/>
+                                        <rect key="frame" x="0.0" y="200" width="343" height="371"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
@@ -203,7 +208,7 @@
                                     <constraint firstAttribute="bottom" secondItem="IyR-WT-rsc" secondAttribute="bottom" constant="20" id="XQ7-sb-ZMs"/>
                                     <constraint firstAttribute="trailing" secondItem="TMQ-c0-n7g" secondAttribute="trailing" id="k7W-MG-mQF"/>
                                     <constraint firstItem="TMQ-c0-n7g" firstAttribute="top" secondItem="KMw-S1-215" secondAttribute="top" id="kcP-cs-oEs"/>
-                                    <constraint firstItem="DuR-o5-irM" firstAttribute="top" secondItem="TMQ-c0-n7g" secondAttribute="bottom" constant="8" id="nHB-cz-boM"/>
+                                    <constraint firstItem="DuR-o5-irM" firstAttribute="top" secondItem="TMQ-c0-n7g" secondAttribute="bottom" id="nHB-cz-boM"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -217,6 +222,7 @@
                         <viewLayoutGuide key="safeArea" id="Mw9-bl-gry"/>
                     </view>
                     <connections>
+                        <outlet property="ac" destination="mbf-i4-jzO" id="2Ky-fX-C8v"/>
                         <outlet property="author" destination="Hdm-xV-s3q" id="Lz4-ba-6Ue"/>
                         <outlet property="bookTitle" destination="YLV-B6-DaN" id="qdS-Xn-aj5"/>
                         <outlet property="cover" destination="uvW-RF-5j2" id="TPU-dR-5Ud"/>

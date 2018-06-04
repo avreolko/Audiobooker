@@ -17,8 +17,10 @@ class ChaptersListPresenter: IChaptersListPresenter {
     
     private func loadChapters() {
         guard let audioBook = self.selectedAudioBook else { return }
+        self.viewController?.startLoadingChapters()
         self.dataProvider.loadChaptersOf(book: audioBook) { (chapters) in
-            viewController?.setChapters(chapters: chapters)
+            self.viewController?.finishLoadingChapters()
+            self.viewController?.setChapters(chapters: chapters)
         }
     }
 }

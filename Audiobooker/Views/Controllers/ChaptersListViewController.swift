@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ChaptersListViewController: DataViewController, IChaptersListView {
+class ChaptersListViewController: DataViewController {
     let chapterCellReuseID = "chapterCellReuseID"
     var presenter: IChaptersListPresenter = ChaptersListPresenter()
     
@@ -20,6 +20,7 @@ class ChaptersListViewController: DataViewController, IChaptersListView {
     @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var author: UILabel!
+    @IBOutlet weak var ac: UIActivityIndicatorView!
     
     override func passData(_ object: Any?) {
         if let audioBook = object as? AudioBook {
@@ -46,10 +47,19 @@ class ChaptersListViewController: DataViewController, IChaptersListView {
         self.presenter.viewController = self
         self.presenter.selectedAudioBook = audioBook
     }
-    
+}
+
+extension ChaptersListViewController: IChaptersListView {
     func setChapters(chapters: [Chapter]) {
         self.chapters = chapters
         self.tableView.reloadData()
+    }
+    
+    func startLoadingChapters() {
+        ac.startAnimating()
+    }
+    func finishLoadingChapters() {
+        ac.stopAnimating()
     }
 }
 
@@ -67,7 +77,7 @@ extension ChaptersListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let chapterCell = cell as? ChapterCell {
             let chapter = self.chapters[indexPath.row]
-            chapterCell.title.text = chapter.name
+            chapterCell.title.text = chapter.title
             chapterCell.progress.text = "\(chapter.progress)"
         }
     }

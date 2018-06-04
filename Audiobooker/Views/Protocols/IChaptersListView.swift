@@ -10,4 +10,6 @@ import Foundation
 
 protocol IChaptersListView: AnyObject {
     func setChapters(chapters: [Chapter])
+    func startLoadingChapters()
+    func finishLoadingChapters()
 }

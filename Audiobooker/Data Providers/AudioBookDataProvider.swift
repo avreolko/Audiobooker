@@ -9,15 +9,16 @@
 import Foundation
 
 protocol IAudioBookDataProvider {
-    func loadListOfBooks(completion: ([AudioBook]) -> ())
-    func loadChaptersOf(book: AudioBook, completion: ([Chapter]) -> ())
+    func loadListOfBooks(completion: @escaping ([AudioBook]) -> ())
+    func loadChaptersOf(book: AudioBook, completion: @escaping ([Chapter]) -> ())
 }
 
 class AudioBookDataProvider: IAudioBookDataProvider {
+    
     private let fileManager = FileManager.default
     private let coreDataManager = CoreDataManager()
     
-    func loadListOfBooks(completion: ([AudioBook]) -> ()) {
+    func loadListOfBooks(completion: @escaping ([AudioBook]) -> ()) {
         var audioBooks: [AudioBook] = [AudioBook]()
         
         let fileURLs = self.getContentsOfDirectory(documentsDirectory)
@@ -32,18 +33,23 @@ class AudioBookDataProvider: IAudioBookDataProvider {
         completion(audioBooks)
     }
     
-    func loadChaptersOf(book: AudioBook, completion: ([Chapter]) -> ()) {
+    func loadChaptersOf(book: AudioBook, completion: @escaping ([Chapter]) -> ()) {
         var chapters: [Chapter] = [Chapter]()
         
-        let fileURLs = self.getContentsOfDirectory(book.chaptersDirectoryPath)
-        for fileUrl in fileURLs {
-            if fileUrl.pathExtension == "mp3" {
-                let chapter = Chapter(chapterURL: fileUrl)
-                chapters.append(chapter)
+        DispatchQueue(label: "com.queue.Concurrent", attributes: .concurrent).async {
+            let fileURLs = self.getContentsOfDirectory(book.chaptersDirectoryPath)
+            for fileUrl in fileURLs {
+                if fileUrl.pathExtension == "mp3" {
+                    let chapter = Chapter(chapterURL: fileUrl)
+                    chapters.append(chapter)
+                    DispatchQueue.main.async { print("loaded chapter: \(chapter.title)") }
+                }
+            }
+            
+            DispatchQueue.main.async {
+                completion(chapters)
             }
         }
-        
-        completion(chapters)
     }
 }
 

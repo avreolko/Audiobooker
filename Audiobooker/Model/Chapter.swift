@@ -9,13 +9,20 @@
 import Foundation
 
 struct Chapter {
-    let audioBookID: String = ""
-    let name: String
     let progress: Double = 0 // 0-1
     let audioFilePath: URL
+    let title: String
+    let album: String
+    let artist: String
+    let albumArtist: String
     
     init(chapterURL: URL) {
-        self.name = chapterURL.lastPathComponent
         self.audioFilePath = chapterURL
+        
+        let mp3TagContainer = MP3TagContainer(pathToMP3File: audioFilePath)
+        self.title = mp3TagContainer.title
+        self.album = mp3TagContainer.album
+        self.artist = mp3TagContainer.artist
+        self.albumArtist = mp3TagContainer.albumArtist
     }
 }

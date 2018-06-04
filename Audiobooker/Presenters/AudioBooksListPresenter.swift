@@ -14,7 +14,7 @@ class AudioBooksListPresenter: IAudioBooksListPresenter {
     
     func viewIsReady() {
         dataProvider.loadListOfBooks { (books) in
-            viewController?.setBooks(books)
+            self.viewController?.setBooks(books)
         }
     }
 }
