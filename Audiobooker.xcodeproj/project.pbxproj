@@ -21,7 +21,6 @@
 		A70368E520C5780500A32029 /* MP3ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368E420C5780500A32029 /* MP3ModelHelper.swift */; };
 		A70368E820C5788F00A32029 /* IMP3TagReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368E720C5788F00A32029 /* IMP3TagReader.swift */; };
 		A70368EA20C579BE00A32029 /* MP3TagReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368E920C579BE00A32029 /* MP3TagReader.swift */; };
-		A703690C20C57D8800A32029 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A703690B20C57D8800A32029 /* Podfile */; };
 		A703697020C57E6600A32029 /* ID3AlbumArtistFrameCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A703691120C57E6600A32029 /* ID3AlbumArtistFrameCreator.swift */; };
 		A703697120C57E6600A32029 /* ID3AlbumFrameCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A703691220C57E6600A32029 /* ID3AlbumFrameCreator.swift */; };
 		A703697220C57E6600A32029 /* ID3ArtistFrameCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A703691320C57E6600A32029 /* ID3ArtistFrameCreator.swift */; };
@@ -145,7 +144,6 @@
 		A70368E420C5780500A32029 /* MP3ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MP3ModelHelper.swift; sourceTree = "<group>"; };
 		A70368E720C5788F00A32029 /* IMP3TagReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMP3TagReader.swift; sourceTree = "<group>"; };
 		A70368E920C579BE00A32029 /* MP3TagReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MP3TagReader.swift; sourceTree = "<group>"; };
-		A703690B20C57D8800A32029 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		A703691120C57E6600A32029 /* ID3AlbumArtistFrameCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ID3AlbumArtistFrameCreator.swift; sourceTree = "<group>"; };
 		A703691220C57E6600A32029 /* ID3AlbumFrameCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ID3AlbumFrameCreator.swift; sourceTree = "<group>"; };
 		A703691320C57E6600A32029 /* ID3ArtistFrameCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ID3ArtistFrameCreator.swift; sourceTree = "<group>"; };
@@ -622,7 +620,6 @@
 		A741F81320C3B9E6003E2B42 = {
 			isa = PBXGroup;
 			children = (
-				A703690B20C57D8800A32029 /* Podfile */,
 				A741F81E20C3B9E6003E2B42 /* Audiobooker */,
 				A741F83320C3B9E6003E2B42 /* AudiobookerTests */,
 				A741F81D20C3B9E6003E2B42 /* Products */,
@@ -817,7 +814,6 @@
 			files = (
 				A741F82A20C3B9E6003E2B42 /* LaunchScreen.storyboard in Resources */,
 				A741F82720C3B9E6003E2B42 /* Assets.xcassets in Resources */,
-				A703690C20C57D8800A32029 /* Podfile in Resources */,
 				A703698D20C57E6600A32029 /* Info.plist in Resources */,
 				A741F82520C3B9E6003E2B42 /* Main.storyboard in Resources */,
 			);
