@@ -14,5 +14,4 @@ protocol IMP3TagContainer {
     var title: String { get }
     var album: String { get }
     var artist: String { get }
-    var albumArtist: String { get }
 }

@@ -14,7 +14,6 @@ struct Chapter {
     let title: String
     let album: String
     let artist: String
-    let albumArtist: String
     
     init(chapterURL: URL) {
         self.audioFilePath = chapterURL
@@ -23,6 +22,5 @@ struct Chapter {
         self.title = mp3TagContainer.title
         self.album = mp3TagContainer.album
         self.artist = mp3TagContainer.artist
-        self.albumArtist = mp3TagContainer.albumArtist
     }
 }

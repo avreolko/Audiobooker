@@ -42,7 +42,7 @@ class AudioBookDataProvider: IAudioBookDataProvider {
                 if fileUrl.pathExtension == "mp3" {
                     let chapter = Chapter(chapterURL: fileUrl)
                     chapters.append(chapter)
-                    DispatchQueue.main.async { print("loaded chapter: \(chapter.title)") }
+//                    DispatchQueue.main.async { print("loaded chapter: \(chapter.title)") }
                 }
             }
             

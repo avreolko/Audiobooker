@@ -7,35 +7,39 @@
 //
 
 import Foundation
+import AVKit
 
 class MP3TagContainer: IMP3TagContainer {
-    private var id3Tag: ID3Tag?
+    private let asset: AVAsset
     
     required init(pathToMP3File: URL) {
-        do {
-            let id3TagEditor = ID3TagEditor()
-            
-            if let id3Tag = try id3TagEditor.read(from: pathToMP3File) {
-                self.id3Tag = id3Tag
-            }
-        } catch {
-            print(error)
-        }
+        self.asset = AVAsset(url: pathToMP3File)
     }
     
+    lazy var tags: [String : String] = {
+        var metaDataDictionary = [String : String]()
+        
+        for metaDataItem in asset.commonMetadata {
+            let value: String = metaDataItem.value as? String ?? ""
+            let key: String = metaDataItem.key as? String ?? ""
+            
+            if let key = metaDataItem.key as? String, let value = metaDataItem.value as? String {
+                metaDataDictionary[key] = value
+            }
+        }
+        
+        return metaDataDictionary
+    }()
+    
     var title: String {
-        return self.id3Tag?.title ?? ""
+        return tags["TIT2"] ?? ""
     }
     
     var album: String {
-        return self.id3Tag?.album ?? ""
+        return tags["TALB"] ?? ""
     }
     
     var artist: String {
-        return self.id3Tag?.artist ?? ""
-    }
-    
-    var albumArtist: String {
-        return self.id3Tag?.albumArtist ?? ""
+        return tags["TPE1"] ?? ""
     }
 }

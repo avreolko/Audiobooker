@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public enum VC: String {
+public enum VCSegue: String {
     case selectAudioBook = "selectAudioBook"
 }
 
