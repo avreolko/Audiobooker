@@ -36,6 +36,8 @@
 		A7C7776020C58C810081BBC5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C7775F20C58C810081BBC5 /* AVFoundation.framework */; };
 		A7C7776320C6C7C00081BBC5 /* ViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7776220C6C7C00081BBC5 /* ViewControllerContainer.swift */; };
 		A7C7776620C6CD7B0081BBC5 /* VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7776520C6CD7B0081BBC5 /* VC.swift */; };
+		A7C7776820C6CFB30081BBC5 /* AudioPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C7776720C6CFB30081BBC5 /* AudioPlayerController.xib */; };
+		A7C7776A20C6CFBA0081BBC5 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7776920C6CFBA0081BBC5 /* AudioPlayerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		A7C7775F20C58C810081BBC5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A7C7776220C6C7C00081BBC5 /* ViewControllerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
 		A7C7776520C6CD7B0081BBC5 /* VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC.swift; sourceTree = "<group>"; };
+		A7C7776720C6CFB30081BBC5 /* AudioPlayerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayerController.xib; sourceTree = "<group>"; };
+		A7C7776920C6CFBA0081BBC5 /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +323,8 @@
 			isa = PBXGroup;
 			children = (
 				A7C7776520C6CD7B0081BBC5 /* VC.swift */,
+				A7C7776720C6CFB30081BBC5 /* AudioPlayerController.xib */,
+				A7C7776920C6CFBA0081BBC5 /* AudioPlayerController.swift */,
 			);
 			path = "Containable View Controllers";
 			sourceTree = "<group>";
@@ -408,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A741F82A20C3B9E6003E2B42 /* LaunchScreen.storyboard in Resources */,
+				A7C7776820C6CFB30081BBC5 /* AudioPlayerController.xib in Resources */,
 				A741F82720C3B9E6003E2B42 /* Assets.xcassets in Resources */,
 				A741F82520C3B9E6003E2B42 /* Main.storyboard in Resources */,
 			);
@@ -441,6 +448,7 @@
 				A70368D420C4083000A32029 /* File.swift in Sources */,
 				A70368E320C41AA000A32029 /* DataViewController.swift in Sources */,
 				A70368E520C5780500A32029 /* MP3ModelHelper.swift in Sources */,
+				A7C7776A20C6CFBA0081BBC5 /* AudioPlayerController.swift in Sources */,
 				A741F82020C3B9E6003E2B42 /* AppDelegate.swift in Sources */,
 				A70368C420C3D30000A32029 /* AudioBookDataProvider.swift in Sources */,
 				A70368E020C4190500A32029 /* ChapterCell.swift in Sources */,

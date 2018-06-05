@@ -59,6 +59,6 @@ extension AudioBooksListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let audioBook = self.audioBooks[indexPath.row]
-        self.segue(VC.selectAudioBook.rawValue, object: audioBook)
+        self.segue(VCSegue.selectAudioBook.rawValue, object: audioBook)
     }
 }

@@ -21,6 +21,7 @@ class ChaptersListViewController: DataViewController {
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var ac: UIActivityIndicatorView!
+    @IBOutlet weak var playerContainer: ViewControllerContainer!
     
     override func passData(_ object: Any?) {
         if let audioBook = object as? AudioBook {
@@ -40,6 +41,8 @@ class ChaptersListViewController: DataViewController {
         UIView.animate(withDuration: 0.5) {
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         }
+        
+        playerContainer.loadViewController(VC.audioPlayer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
