@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol IChaptersListPresenter {
-    weak var viewController: IChaptersListView? { get set }
-    var selectedAudioBook: AudioBook? { get set }
+protocol IChaptersListInteractor: IInteractor {
+    init(audioBook: AudioBook)
+    func startLoadingChapters()
 }

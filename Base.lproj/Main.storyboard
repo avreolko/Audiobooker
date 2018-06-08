@@ -94,10 +94,10 @@
             </objects>
             <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
         </scene>
-        <!--Chapters List View Controller-->
+        <!--Chapters List Router-->
         <scene sceneID="Aza-eV-ldF">
             <objects>
-                <viewController id="Kpe-w7-tGm" customClass="ChaptersListViewController" customModule="Audiobooker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kpe-w7-tGm" customClass="ChaptersListRouter" customModule="Audiobooker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cuc-zt-Wrd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,14 +130,23 @@
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mbf-i4-jzO">
                                                 <rect key="frame" x="331" y="156" width="20" height="20"/>
                                             </activityIndicatorView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rm6-tf-K3S">
+                                                <rect key="frame" x="156.5" y="77" width="46" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="closeButtonTapped:" destination="Kpe-w7-tGm" eventType="touchUpInside" id="jvn-ZI-9AY"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="Rm6-tf-K3S" firstAttribute="centerX" secondItem="TMQ-c0-n7g" secondAttribute="centerX" id="8Fv-cK-58H"/>
                                             <constraint firstAttribute="bottom" secondItem="mbf-i4-jzO" secondAttribute="bottom" constant="8" id="Jln-PF-v7A"/>
                                             <constraint firstItem="Hdm-xV-s3q" firstAttribute="leading" secondItem="uvW-RF-5j2" secondAttribute="trailing" constant="12" id="Oq6-lj-5Yn"/>
                                             <constraint firstItem="uvW-RF-5j2" firstAttribute="leading" secondItem="TMQ-c0-n7g" secondAttribute="leading" constant="12" id="ZZD-WY-4Z5"/>
                                             <constraint firstAttribute="trailing" secondItem="Hdm-xV-s3q" secondAttribute="trailing" constant="12" id="cgt-Hc-DAj"/>
                                             <constraint firstItem="Hdm-xV-s3q" firstAttribute="top" secondItem="YLV-B6-DaN" secondAttribute="bottom" constant="8" id="hMg-Ef-OTe"/>
+                                            <constraint firstItem="Rm6-tf-K3S" firstAttribute="centerY" secondItem="TMQ-c0-n7g" secondAttribute="centerY" id="mR4-zs-7qe"/>
                                             <constraint firstAttribute="trailing" secondItem="YLV-B6-DaN" secondAttribute="trailing" constant="12" id="mSp-fr-3me"/>
                                             <constraint firstItem="uvW-RF-5j2" firstAttribute="top" secondItem="TMQ-c0-n7g" secondAttribute="top" constant="12" id="oJR-kD-2fO"/>
                                             <constraint firstAttribute="trailing" secondItem="mbf-i4-jzO" secondAttribute="trailing" constant="8" id="ppP-Uv-GDk"/>
@@ -189,7 +198,7 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-WT-rsc" customClass="ViewControllerContainer" customModule="Audiobooker" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-WT-rsc">
                                         <rect key="frame" x="0.0" y="579" width="359" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -227,7 +236,6 @@
                         <outlet property="bookTitle" destination="YLV-B6-DaN" id="qdS-Xn-aj5"/>
                         <outlet property="cover" destination="uvW-RF-5j2" id="TPU-dR-5Ud"/>
                         <outlet property="panel" destination="KMw-S1-215" id="afz-dc-0Yo"/>
-                        <outlet property="playerContainer" destination="IyR-WT-rsc" id="NcJ-83-DXw"/>
                         <outlet property="tableView" destination="DuR-o5-irM" id="CMx-eZ-k2v"/>
                     </connections>
                 </viewController>
