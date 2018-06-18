@@ -11,7 +11,7 @@ import Foundation
 final class ChapterListInteractor: IChaptersListInteractor {
     let dataProvider: IAudioBookDataProvider = AudioBookDataProvider()
     
-    private weak var chapterListController: IChaptersListController?
+    public weak var output: IChaptersListInteractorOutput?
     
     private let audioBook: AudioBook
     
@@ -19,17 +19,11 @@ final class ChapterListInteractor: IChaptersListInteractor {
         self.audioBook = audioBook
     }
     
-    func attach(controller: IController?) {
-        if let chapterController = controller as? IChaptersListController {
-            self.chapterListController = chapterController
-        }
-    }
-    
     func startLoadingChapters() {
-        self.chapterListController?.loadingChaptersHasStarted()
+        self.output?.loadingChaptersHasStarted()
         self.dataProvider.loadChaptersOf(book: audioBook) { (chapters) in
-            self.chapterListController?.loadingChaptersHasEnded()
-            self.chapterListController?.setChapters(chapters: chapters)
+            self.output?.loadingChaptersHasEnded()
+            self.output?.setChapters(chapters: chapters)
         }
     }
 }

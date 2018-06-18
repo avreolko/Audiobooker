@@ -8,8 +8,7 @@
 
 import UIKit
 
-protocol IChaptersListController: IController {
-    init(table: UITableView, ac: UIActivityIndicatorView?)
+protocol IChaptersListInteractorOutput: IController {
     func setChapters(chapters: [Chapter])
     func loadingChaptersHasStarted()
     func loadingChaptersHasEnded()

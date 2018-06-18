@@ -198,12 +198,54 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-WT-rsc">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-WT-rsc" customClass="PlayerView" customModule="Audiobooker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="579" width="359" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-ou-i1J">
+                                                <rect key="frame" x="154" y="5" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="aIW-Fl-0Tl"/>
+                                                    <constraint firstAttribute="height" constant="50" id="kLh-KR-IbM"/>
+                                                </constraints>
+                                                <state key="normal" image="play"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEr-NZ-EnG" userLabel="ProgressBar" customClass="ProgressBar" customModule="Audiobooker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="56" width="359" height="4"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWA-jU-Y0e" userLabel="Line">
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="4"/>
+                                                        <color key="backgroundColor" red="0.31764705879999999" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="eNh-Dq-Toe"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="IWA-jU-Y0e" firstAttribute="leading" secondItem="pEr-NZ-EnG" secondAttribute="leading" id="BZn-fn-dEH"/>
+                                                    <constraint firstItem="IWA-jU-Y0e" firstAttribute="top" secondItem="pEr-NZ-EnG" secondAttribute="top" id="GiI-Lc-dcb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="IWA-jU-Y0e" secondAttribute="bottom" id="osg-dG-fvS"/>
+                                                    <constraint firstAttribute="height" constant="4" id="pKT-yx-gpq"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="line" destination="IWA-jU-Y0e" id="3hW-o5-qJS"/>
+                                                    <outlet property="lineWidth" destination="eNh-Dq-Toe" id="XF6-eT-BsW"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="Gwo-ou-i1J" firstAttribute="centerY" secondItem="IyR-WT-rsc" secondAttribute="centerY" id="6Lo-UZ-QL3"/>
+                                            <constraint firstItem="pEr-NZ-EnG" firstAttribute="leading" secondItem="IyR-WT-rsc" secondAttribute="leading" id="BfD-op-LvS"/>
+                                            <constraint firstAttribute="trailing" secondItem="pEr-NZ-EnG" secondAttribute="trailing" id="Ze8-1h-SaU"/>
                                             <constraint firstAttribute="height" constant="60" id="dGk-TV-Bj5"/>
+                                            <constraint firstItem="Gwo-ou-i1J" firstAttribute="centerX" secondItem="IyR-WT-rsc" secondAttribute="centerX" id="kWE-sI-ryx"/>
+                                            <constraint firstAttribute="bottom" secondItem="pEr-NZ-EnG" secondAttribute="bottom" id="oUH-Yv-3XN"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="playButton" destination="Gwo-ou-i1J" id="Z3o-Ce-Cpc"/>
+                                            <outlet property="progressBar" destination="pEr-NZ-EnG" id="kq2-3O-Pv0"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -236,6 +278,7 @@
                         <outlet property="bookTitle" destination="YLV-B6-DaN" id="qdS-Xn-aj5"/>
                         <outlet property="cover" destination="uvW-RF-5j2" id="TPU-dR-5Ud"/>
                         <outlet property="panel" destination="KMw-S1-215" id="afz-dc-0Yo"/>
+                        <outlet property="playerView" destination="IyR-WT-rsc" id="iYR-Eb-XbF"/>
                         <outlet property="tableView" destination="DuR-o5-irM" id="CMx-eZ-k2v"/>
                     </connections>
                 </viewController>
@@ -244,4 +287,7 @@
             <point key="canvasLocation" x="912.79999999999995" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play" width="50" height="50"/>
+    </resources>
 </document>

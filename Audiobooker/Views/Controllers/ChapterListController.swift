@@ -8,8 +8,13 @@
 
 import UIKit
 
-final class ChapterListController: NSObject, IChaptersListController {
+final class ChapterListController: NSObject {
     let chapterCellReuseID = "chapterCellReuseID"
+    var interactor: IChaptersListInteractor? {
+        didSet {
+            interactor?.startLoadingChapters()
+        }
+    }
     
     private var chapters: [Chapter] = [Chapter]()
     
@@ -17,7 +22,9 @@ final class ChapterListController: NSObject, IChaptersListController {
     private weak var tableView: UITableView?
     public weak var output: IChaptersListControllerOutput?
     
-    init(table: UITableView, ac: UIActivityIndicatorView? = nil) {
+    init(table: UITableView,
+         ac: UIActivityIndicatorView? = nil) {
+        
         self.tableView = table
         self.ac = ac
         
@@ -26,7 +33,9 @@ final class ChapterListController: NSObject, IChaptersListController {
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
     }
-    
+}
+
+extension ChapterListController: IChaptersListInteractorOutput {
     func setChapters(chapters: [Chapter]) {
         self.chapters = chapters
         tableView?.reloadData()

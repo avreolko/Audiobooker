@@ -1,5 +1,5 @@
 //
-//  AudioBooksListPresenter.swift
+//  AudioBooksListInteractor.swift
 //  Audiobooker
 //
 //  Created by Valentin Cherepyanko on 03/06/2018.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class AudioBooksListPresenter: IAudioBooksListPresenter {
+class AudioBooksListInteractor: IAudioBooksListInteractor {
     let dataProvider: IAudioBookDataProvider = AudioBookDataProvider()
-    weak var viewController: IAudioBooksListView?
+    weak var output: IAudioBooksListView?
     
-    func viewIsReady() {
+    func startLoadingBooks() {
         dataProvider.loadListOfBooks { (books) in
-            self.viewController?.setBooks(books)
+            self.output?.setBooks(books)
         }
     }
 }

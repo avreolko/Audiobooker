@@ -8,8 +8,8 @@
 
 import UIKit
 
-class AudioBooksListViewController: DataViewController, IAudioBooksListView {
-    var presenter: IAudioBooksListPresenter = AudioBooksListPresenter()
+class AudioBooksListViewController: DataViewController {
+    var interactor: IAudioBooksListInteractor = AudioBooksListInteractor()
     let audioBookCellReuseID = "audioBookCellReuseID"
     var audioBooks: [AudioBook] = [AudioBook]()
     
@@ -19,14 +19,16 @@ class AudioBooksListViewController: DataViewController, IAudioBooksListView {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.presenter.viewController = self
+        self.interactor.output = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.presenter.viewIsReady()
+        self.interactor.startLoadingBooks()
     }
-    
+}
+
+extension AudioBooksListViewController: IAudioBooksListView {
     func setBooks(_ books: [AudioBook]) {
         self.audioBooks = books
         tableView?.reloadData()

@@ -1,5 +1,5 @@
 //
-//  IChaptersListPresenter.swift
+//  IAudioBooksListInteractor.swift
 //  Audiobooker
 //
 //  Created by Valentin Cherepyanko on 03/06/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol IChaptersListInteractor: IInteractor {
-    init(audioBook: AudioBook)
-    func startLoadingChapters()
+protocol IAudioBooksListInteractor {
+    weak var output: IAudioBooksListView? { get set }
+    func startLoadingBooks()
 }
