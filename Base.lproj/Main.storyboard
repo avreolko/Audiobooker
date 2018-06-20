@@ -202,14 +202,25 @@
                                         <rect key="frame" x="0.0" y="579" width="359" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-ou-i1J">
-                                                <rect key="frame" x="154" y="5" width="50" height="50"/>
+                                                <rect key="frame" x="295" y="0.0" width="60" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="aIW-Fl-0Tl"/>
-                                                    <constraint firstAttribute="height" constant="50" id="kLh-KR-IbM"/>
+                                                    <constraint firstAttribute="width" constant="60" id="aIW-Fl-0Tl"/>
+                                                    <constraint firstAttribute="height" constant="60" id="kLh-KR-IbM"/>
                                                 </constraints>
                                                 <state key="normal" image="play"/>
                                                 <connections>
                                                     <action selector="playButtonTapped:" destination="IyR-WT-rsc" eventType="touchUpInside" id="iwy-pE-5kd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJ3-XE-W3j">
+                                                <rect key="frame" x="235" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="HNs-FH-IKX"/>
+                                                    <constraint firstAttribute="width" constant="60" id="Xvu-kk-L2Y"/>
+                                                </constraints>
+                                                <state key="normal" image="next"/>
+                                                <connections>
+                                                    <action selector="nextButtonTapped:" destination="IyR-WT-rsc" eventType="touchUpInside" id="LIE-LS-xte"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEr-NZ-EnG" userLabel="ProgressBar" customClass="ProgressBar" customModule="Audiobooker" customModuleProvider="target">
@@ -235,19 +246,47 @@
                                                     <outlet property="lineWidth" destination="eNh-Dq-Toe" id="XF6-eT-BsW"/>
                                                 </connections>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJr-wq-hph">
+                                                <rect key="frame" x="8" y="8" width="163" height="44"/>
+                                                <string key="text">1984
+Глава 1</string>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                <color key="textColor" red="0.90588235289999997" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8h-Jt-NlX">
+                                                <rect key="frame" x="175" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="DLi-0I-hOA"/>
+                                                    <constraint firstAttribute="width" constant="60" id="ZXU-yv-0jh"/>
+                                                </constraints>
+                                                <state key="normal" image="previous"/>
+                                                <connections>
+                                                    <action selector="previousButtonTapped:" destination="IyR-WT-rsc" eventType="touchUpInside" id="r1K-WX-RjX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="iJr-wq-hph" firstAttribute="top" secondItem="IyR-WT-rsc" secondAttribute="top" constant="8" id="1BI-Ce-LFZ"/>
                                             <constraint firstItem="Gwo-ou-i1J" firstAttribute="centerY" secondItem="IyR-WT-rsc" secondAttribute="centerY" id="6Lo-UZ-QL3"/>
                                             <constraint firstItem="pEr-NZ-EnG" firstAttribute="leading" secondItem="IyR-WT-rsc" secondAttribute="leading" id="BfD-op-LvS"/>
+                                            <constraint firstItem="OJ3-XE-W3j" firstAttribute="centerY" secondItem="Gwo-ou-i1J" secondAttribute="centerY" id="OQd-At-hgW"/>
                                             <constraint firstAttribute="trailing" secondItem="pEr-NZ-EnG" secondAttribute="trailing" id="Ze8-1h-SaU"/>
+                                            <constraint firstItem="N8h-Jt-NlX" firstAttribute="centerY" secondItem="Gwo-ou-i1J" secondAttribute="centerY" id="d8R-4s-wod"/>
                                             <constraint firstAttribute="height" constant="60" id="dGk-TV-Bj5"/>
-                                            <constraint firstItem="Gwo-ou-i1J" firstAttribute="centerX" secondItem="IyR-WT-rsc" secondAttribute="centerX" id="kWE-sI-ryx"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gwo-ou-i1J" secondAttribute="trailing" constant="4" id="lfR-tp-Ea3"/>
+                                            <constraint firstItem="iJr-wq-hph" firstAttribute="leading" secondItem="IyR-WT-rsc" secondAttribute="leading" constant="8" id="oQJ-0X-Ss0"/>
                                             <constraint firstAttribute="bottom" secondItem="pEr-NZ-EnG" secondAttribute="bottom" id="oUH-Yv-3XN"/>
+                                            <constraint firstItem="OJ3-XE-W3j" firstAttribute="leading" secondItem="N8h-Jt-NlX" secondAttribute="trailing" id="u93-er-rqY"/>
+                                            <constraint firstAttribute="bottom" secondItem="iJr-wq-hph" secondAttribute="bottom" constant="8" id="uwE-Y2-0bQ"/>
+                                            <constraint firstItem="Gwo-ou-i1J" firstAttribute="leading" secondItem="OJ3-XE-W3j" secondAttribute="trailing" id="vRy-Dn-W16"/>
+                                            <constraint firstItem="N8h-Jt-NlX" firstAttribute="leading" secondItem="iJr-wq-hph" secondAttribute="trailing" constant="4" id="zyw-4k-qpl"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="playButton" destination="Gwo-ou-i1J" id="Z3o-Ce-Cpc"/>
                                             <outlet property="progressBar" destination="pEr-NZ-EnG" id="kq2-3O-Pv0"/>
+                                            <outlet property="titleLabel" destination="iJr-wq-hph" id="jlp-G5-gjr"/>
                                         </connections>
                                     </view>
                                 </subviews>
@@ -291,6 +330,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="next" width="60" height="60"/>
         <image name="play" width="60" height="60"/>
+        <image name="previous" width="60" height="60"/>
     </resources>
 </document>

@@ -39,6 +39,8 @@
 		A7A36E3B20D7FDDC0070ECB6 /* IPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3A20D7FDDC0070ECB6 /* IPlayerView.swift */; };
 		A7A36E3D20D808A50070ECB6 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3C20D808A50070ECB6 /* AudioPlayerController.swift */; };
 		A7A36E3F20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3E20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift */; };
+		A7A36E4120DA96080070ECB6 /* IStateableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E4020DA96080070ECB6 /* IStateableView.swift */; };
+		A7A36E4320DA96DB0070ECB6 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E4220DA96DB0070ECB6 /* Storage.swift */; };
 		A7C7776020C58C810081BBC5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C7775F20C58C810081BBC5 /* AVFoundation.framework */; };
 		A7C7777520CABDB40081BBC5 /* ChapterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777420CABDB40081BBC5 /* ChapterListController.swift */; };
 		A7C7777720CAC31B0081BBC5 /* IController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777620CAC31B0081BBC5 /* IController.swift */; };
@@ -105,6 +107,8 @@
 		A7A36E3A20D7FDDC0070ECB6 /* IPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPlayerView.swift; sourceTree = "<group>"; };
 		A7A36E3C20D808A50070ECB6 /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
 		A7A36E3E20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChaptersListControllerDelegate.swift; sourceTree = "<group>"; };
+		A7A36E4020DA96080070ECB6 /* IStateableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStateableView.swift; sourceTree = "<group>"; };
+		A7A36E4220DA96DB0070ECB6 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		A7C7775F20C58C810081BBC5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A7C7777420CABDB40081BBC5 /* ChapterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListController.swift; sourceTree = "<group>"; };
 		A7C7777620CAC31B0081BBC5 /* IController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IController.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				A70368C920C403DB00A32029 /* CoreDataManager.swift */,
 				A70368E420C5780500A32029 /* MP3ModelHelper.swift */,
 				A70368E920C579BE00A32029 /* MP3TagReader.swift */,
+				A7A36E4220DA96DB0070ECB6 /* Storage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				A7A36E3320D7F1490070ECB6 /* IAudioPlayerController.swift */,
 				A7A36E3A20D7FDDC0070ECB6 /* IPlayerView.swift */,
 				A7A36E3E20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift */,
+				A7A36E4020DA96080070ECB6 /* IStateableView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				A741F84D20C3BC70003E2B42 /* AudioBooksListInteractor.swift in Sources */,
 				A741F84320C3BA56003E2B42 /* AudioBook.swift in Sources */,
 				A741F85420C3C488003E2B42 /* AudioBookCell.swift in Sources */,
+				A7A36E4120DA96080070ECB6 /* IStateableView.swift in Sources */,
 				A70368DA20C4170300A32029 /* IChaptersListInteractorOutput.swift in Sources */,
 				A70368D620C4163C00A32029 /* ChapterListInteractor.swift in Sources */,
 				A70368CA20C403DB00A32029 /* CoreDataManager.swift in Sources */,
@@ -462,6 +469,7 @@
 				A741F84820C3BC0D003E2B42 /* IAudioBooksListView.swift in Sources */,
 				A70368D820C4164E00A32029 /* IChaptersListInteractor.swift in Sources */,
 				A70368DC20C417B300A32029 /* ChaptersListRouter.swift in Sources */,
+				A7A36E4320DA96DB0070ECB6 /* Storage.swift in Sources */,
 				A7A36E3B20D7FDDC0070ECB6 /* IPlayerView.swift in Sources */,
 				A70368E820C5788F00A32029 /* IMP3TagReader.swift in Sources */,
 				A7A36E3720D7F4E20070ECB6 /* ProgressBar.swift in Sources */,

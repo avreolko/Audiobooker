@@ -17,4 +17,7 @@ protocol IPlayerViewDelegate: AnyObject {
 protocol IPlayerView: AnyObject {
     weak var delegate: IPlayerViewDelegate? { get set }
     func set(progress: Float)
+    func set(title: String)
+    
+    var paused: Bool { get set }
 }

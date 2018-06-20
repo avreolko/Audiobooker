@@ -59,6 +59,7 @@ extension AudioPlayerController: IPlayerViewDelegate {
     func playTapped() {
         self.paused = !self.paused
         self.paused ? self.audioPlayer.pause() : self.audioPlayer.play()
+        self.playerView?.paused = self.paused
     }
     
     func nextTapped() {
