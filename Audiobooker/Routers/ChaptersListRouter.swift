@@ -45,19 +45,17 @@ class ChaptersListRouter: DataViewController {
         interactor.output = chapterListController
         chapterListController.interactor = interactor
         
-        chapterListController.output = self
         
         self.chapterListController = chapterListController
+        
+        let audioPlayerController = AudioPlayerController(playerView: self.playerView)
+        audioPlayerController.delegate = chapterListController
+        self.audioPlayerController = audioPlayerController
+        chapterListController.delegate = audioPlayerController
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension ChaptersListRouter: IChaptersListControllerOutput {
-    func select(chapter: Chapter) {
-        print("chapter selected")
     }
 }
 

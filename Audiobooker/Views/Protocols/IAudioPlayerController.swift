@@ -8,9 +8,10 @@
 
 import UIKit
 
+
 protocol IAudioPlayerDelegate: AnyObject {
-    func getNextFileURL() -> URL
-    func getPreviousFileURL() -> URL
+    func getNextFileURL(for url: URL) -> URL?
+    func getPreviousFileURL(for url: URL) -> URL?
 }
 
 protocol IAudioPlayerController {

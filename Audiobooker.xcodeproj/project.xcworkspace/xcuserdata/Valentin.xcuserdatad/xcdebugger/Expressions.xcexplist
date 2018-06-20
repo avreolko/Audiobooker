@@ -3,12 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "AudioPlayerController.checkProgress(cmtime:):AudioPlayerController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "asset.duration">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AudioBookDataProvider.loadChaptersOf(book:completion:):AudioBookDataProvider.swift">
          <PersistentStrings>
             <PersistentString
                value = "fileUrl.pathExtension">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AudioPlayerController.playFile(url:):AudioPlayerController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

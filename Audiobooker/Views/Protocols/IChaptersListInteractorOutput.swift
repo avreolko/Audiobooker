@@ -13,7 +13,3 @@ protocol IChaptersListInteractorOutput: IController {
     func loadingChaptersHasStarted()
     func loadingChaptersHasEnded()
 }
-
-protocol IChaptersListControllerOutput: AnyObject {
-    func select(chapter: Chapter)
-}

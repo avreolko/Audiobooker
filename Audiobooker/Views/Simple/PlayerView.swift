@@ -18,4 +18,8 @@ class PlayerView: UIView, IPlayerView {
     func set(progress: Float) {
         self.progressBar.set(progress: progress)
     }
+    
+    @IBAction func playButtonTapped(_ sender: Any) {
+        delegate?.playTapped()
+    }
 }

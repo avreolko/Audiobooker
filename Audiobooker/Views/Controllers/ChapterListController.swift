@@ -20,10 +20,9 @@ final class ChapterListController: NSObject {
     
     private weak var ac: UIActivityIndicatorView?
     private weak var tableView: UITableView?
-    public weak var output: IChaptersListControllerOutput?
+    public weak var delegate: IChaptersListControllerDelegate?
     
-    init(table: UITableView,
-         ac: UIActivityIndicatorView? = nil) {
+    init(table: UITableView, ac: UIActivityIndicatorView? = nil) {
         
         self.tableView = table
         self.ac = ac
@@ -46,6 +45,36 @@ extension ChapterListController: IChaptersListInteractorOutput {
     }
     func loadingChaptersHasEnded() {
         ac?.stopAnimating()
+    }
+}
+
+extension ChapterListController: IAudioPlayerDelegate {
+    func getNextFileURL(for url: URL) -> URL? {
+        for (index, chapter) in self.chapters.enumerated() {
+            if (chapter.audioFilePath.absoluteString == url.absoluteString) {
+                guard chapters.indices.contains(index - 1) else {
+                    return nil
+                }
+                
+                return chapters[index - 1].audioFilePath
+            }
+        }
+        
+        return nil
+    }
+    
+    func getPreviousFileURL(for url: URL) -> URL? {
+        for (index, chapter) in self.chapters.enumerated() {
+            if (chapter.audioFilePath.absoluteString == url.absoluteString) {
+                guard chapters.indices.contains(index + 1) else {
+                    return nil
+                }
+                
+                return chapters[index + 1].audioFilePath
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -74,6 +103,6 @@ extension ChapterListController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chapter = self.chapters[indexPath.row]
-        self.output?.select(chapter: chapter)
+        self.delegate?.select(chapter: chapter)
     }
 }
