@@ -15,6 +15,7 @@ class AudioPlayerController: IAudioPlayerController {
     private var audioPlayer: AVPlayer
     private var paused = false
     private var asset: AVAsset?
+    private var _progress: Float = 0
     
     required init(playerView: IPlayerView) {
         self.playerView = playerView
@@ -28,7 +29,7 @@ class AudioPlayerController: IAudioPlayerController {
     }
     
     var progress: Float {
-        return 0
+        return _progress
     }
     
     func playFile(url: URL) {
@@ -69,4 +70,30 @@ extension AudioPlayerController: IPlayerViewDelegate {
     func previousTapped() {
         
     }
+}
+
+extension AudioPlayerController: IStateable {
+    var state: Codable? {
+        guard let url = (self.asset as? AVURLAsset)?.url else {
+            return nil
+        }
+        
+        return AudioPlayerControllerState(progress: self.progress, assetURL: url)
+    }
+    
+    var key: String { return "audio player controller state" }
+    
+    func restore(with state: Codable?) {
+        guard let state = state as? AudioPlayerControllerState else {
+            return
+        }
+        
+        _progress = state.progress
+        self.asset = AVAsset(url: state.assetURL)
+    }
+}
+
+struct AudioPlayerControllerState: Codable {
+    var progress: Float
+    var assetURL: URL
 }

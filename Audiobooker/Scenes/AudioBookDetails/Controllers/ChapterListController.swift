@@ -10,6 +10,11 @@ import UIKit
 
 final class ChapterListController: NSObject {
     let chapterCellReuseID = "chapterCellReuseID"
+    var selectedChapterIndex: Int? {
+        didSet {
+            // TODO scroll to chapter position in table
+        }
+    }
     var interactor: IChaptersListInteractor? {
         didSet {
             interactor?.startLoadingChapters()
@@ -17,34 +22,31 @@ final class ChapterListController: NSObject {
     }
     
     private var chapters: [Chapter] = [Chapter]()
-    
-    private weak var ac: UIActivityIndicatorView?
-    private weak var tableView: UITableView?
     public weak var delegate: IChaptersListControllerDelegate?
     
-    init(table: UITableView, ac: UIActivityIndicatorView? = nil) {
-        
-        self.tableView = table
-        self.ac = ac
+    private weak var view: ChapterListView!
+    
+    init(view: ChapterListView) {
+        self.view = view
         
         super.init()
         
-        self.tableView?.delegate = self
-        self.tableView?.dataSource = self
+        self.view.tableView.delegate = self
+        self.view.tableView.dataSource = self
     }
 }
 
 extension ChapterListController: IChaptersListInteractorOutput {
     func setChapters(chapters: [Chapter]) {
         self.chapters = chapters
-        tableView?.reloadData()
+        self.view.tableView.reloadData()
     }
     
     func loadingChaptersHasStarted() {
-        ac?.startAnimating()
+        self.view.ac?.startAnimating()
     }
     func loadingChaptersHasEnded() {
-        ac?.stopAnimating()
+        self.view.ac?.stopAnimating()
     }
 }
 
@@ -102,7 +104,33 @@ extension ChapterListController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedChapterIndex = indexPath.row
+        
         let chapter = self.chapters[indexPath.row]
         self.delegate?.select(chapter: chapter)
     }
+}
+
+extension ChapterListController: IStateable {
+    var state: Codable? {
+        guard let index = self.selectedChapterIndex else {
+            return nil
+        }
+        
+        return ChapterListControllerState(selectedChapterIndex:index)
+    }
+    
+    var key: String { return "audio player controller state" }
+    
+    func restore(with state: Codable?) {
+        guard let state = state as? ChapterListControllerState else {
+            return
+        }
+        
+        self.selectedChapterIndex = state.selectedChapterIndex
+    }
+}
+
+struct ChapterListControllerState: Codable {
+    var selectedChapterIndex: Int
 }

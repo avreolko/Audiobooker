@@ -10,29 +10,29 @@ import UIKit
 public protocol IStorageKey: CodingKey { }
 
 public protocol IStorage: AnyObject {
-    func fetch<T: Codable>(for key: IStorageKey) -> T?
-    func save<T: Codable>(_ data: T, for key: IStorageKey)
+    func fetch<T: Codable>(for key: String) -> T?
+    func save<T: Codable>(_ data: T, for key: String)
 }
 
 final class DefaultsStorage: IStorage {
-    func save<T: Codable>(_ object: T, for key: IStorageKey) {
+    func save<T: Codable>(_ object: T, for key: String) {
         
         let encoder = JSONEncoder()
         let userDefaults = UserDefaults.standard
         
         if let data = try? encoder.encode(object) {
-            userDefaults.set(data, forKey: key.stringValue)
+            userDefaults.set(data, forKey: key)
         } else {
-            userDefaults.set(object, forKey: key.stringValue)
+            userDefaults.set(object, forKey: key)
         }
     }
     
-    func fetch<T: Codable>(for key: IStorageKey) -> T? {
+    func fetch<T: Codable>(for key: String) -> T? {
         
         let decoder = JSONDecoder()
         let userDefaults = UserDefaults.standard
         
-        guard let valueAny = userDefaults.value(forKey: key.stringValue) else {
+        guard let valueAny = userDefaults.value(forKey: key) else {
             return nil
         }
         

@@ -1,0 +1,43 @@
+//
+//  ChaptersListViewController.swift
+//  Audiobooker
+//
+//  Created by Valentin Cherepyanko on 03/06/2018.
+//  Copyright © 2018 Valentin Cherepyanko. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class AudiobookDetailsRootController: DataViewController {
+    private var director: AudiobookDetailsDirector?
+    
+    @IBOutlet var panel: UIView!
+    
+    @IBOutlet weak var audioBookInfoView: AudiobookInfoView!
+    @IBOutlet weak var playerView: PlayerView!
+    @IBOutlet weak var chapterListView: ChapterListView!
+    
+    override func passData(_ object: Any?) {
+        if let audioBook = object as? AudioBook {
+            self.director = AudiobookDetailsDirector(with: self)
+            self.director?.audiobook = audioBook
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.decorate()
+        self.director?.viewIsReady()
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+private extension AudiobookDetailsRootController {
+    func decorate() {
+        UIViewDecorator.decorate(view: self.panel, config: .bigPanel)
+    }
+}

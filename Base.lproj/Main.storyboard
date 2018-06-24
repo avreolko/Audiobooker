@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Audio Books List View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -94,10 +89,10 @@
             </objects>
             <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
         </scene>
-        <!--Chapters List Router-->
+        <!--Audiobook Details Root Controller-->
         <scene sceneID="Aza-eV-ldF">
             <objects>
-                <viewController id="Kpe-w7-tGm" customClass="ChaptersListRouter" customModule="Audiobooker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kpe-w7-tGm" customClass="AudiobookDetailsRootController" customModule="Audiobooker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cuc-zt-Wrd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,7 +100,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KMw-S1-215">
                                 <rect key="frame" x="8" y="28" width="359" height="659"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMQ-c0-n7g">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMQ-c0-n7g" userLabel="AudiobookInfoView" customClass="AudiobookInfoView" customModule="Audiobooker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="184"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLV-B6-DaN">
@@ -127,9 +122,6 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mbf-i4-jzO">
-                                                <rect key="frame" x="331" y="156" width="20" height="20"/>
-                                            </activityIndicatorView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rm6-tf-K3S">
                                                 <rect key="frame" x="156.5" y="77" width="46" height="30"/>
                                                 <state key="normal" title="Button"/>
@@ -141,7 +133,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Rm6-tf-K3S" firstAttribute="centerX" secondItem="TMQ-c0-n7g" secondAttribute="centerX" id="8Fv-cK-58H"/>
-                                            <constraint firstAttribute="bottom" secondItem="mbf-i4-jzO" secondAttribute="bottom" constant="8" id="Jln-PF-v7A"/>
                                             <constraint firstItem="Hdm-xV-s3q" firstAttribute="leading" secondItem="uvW-RF-5j2" secondAttribute="trailing" constant="12" id="Oq6-lj-5Yn"/>
                                             <constraint firstItem="uvW-RF-5j2" firstAttribute="leading" secondItem="TMQ-c0-n7g" secondAttribute="leading" constant="12" id="ZZD-WY-4Z5"/>
                                             <constraint firstAttribute="trailing" secondItem="Hdm-xV-s3q" secondAttribute="trailing" constant="12" id="cgt-Hc-DAj"/>
@@ -149,55 +140,80 @@
                                             <constraint firstItem="Rm6-tf-K3S" firstAttribute="centerY" secondItem="TMQ-c0-n7g" secondAttribute="centerY" id="mR4-zs-7qe"/>
                                             <constraint firstAttribute="trailing" secondItem="YLV-B6-DaN" secondAttribute="trailing" constant="12" id="mSp-fr-3me"/>
                                             <constraint firstItem="uvW-RF-5j2" firstAttribute="top" secondItem="TMQ-c0-n7g" secondAttribute="top" constant="12" id="oJR-kD-2fO"/>
-                                            <constraint firstAttribute="trailing" secondItem="mbf-i4-jzO" secondAttribute="trailing" constant="8" id="ppP-Uv-GDk"/>
                                             <constraint firstAttribute="bottom" secondItem="uvW-RF-5j2" secondAttribute="bottom" constant="12" id="skT-c3-bu6"/>
                                             <constraint firstItem="YLV-B6-DaN" firstAttribute="top" secondItem="uvW-RF-5j2" secondAttribute="top" id="srS-Ka-L6O"/>
                                             <constraint firstItem="YLV-B6-DaN" firstAttribute="leading" secondItem="uvW-RF-5j2" secondAttribute="trailing" constant="12" id="z9x-5k-LkY"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="author" destination="Hdm-xV-s3q" id="okU-po-M6j"/>
+                                            <outlet property="bookTitle" destination="YLV-B6-DaN" id="vY1-55-45T"/>
+                                            <outlet property="cover" destination="uvW-RF-5j2" id="Bix-uZ-cZh"/>
+                                        </connections>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DuR-o5-irM">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbS-X5-m45" userLabel="ChapterListView" customClass="ChapterListView" customModule="Audiobooker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="184" width="359" height="395"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chapterCellReuseID" id="JXu-UI-4dV" userLabel="Chapter Cell" customClass="ChapterCell" customModule="Audiobooker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="359" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JXu-UI-4dV" id="RxW-2I-pPz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название главы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRZ-PQ-0xG" userLabel="Title">
-                                                            <rect key="frame" x="15" y="12" width="263" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQQ-F2-dlR" userLabel="Progress">
-                                                            <rect key="frame" x="286" y="11" width="50" height="21"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DuR-o5-irM">
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="395"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chapterCellReuseID" id="JXu-UI-4dV" userLabel="Chapter Cell" customClass="ChapterCell" customModule="Audiobooker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="359" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JXu-UI-4dV" id="RxW-2I-pPz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название главы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRZ-PQ-0xG" userLabel="Title">
+                                                                    <rect key="frame" x="15" y="12" width="263" height="21"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQQ-F2-dlR" userLabel="Progress">
+                                                                    <rect key="frame" x="286" y="11" width="50" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="50" id="zdg-7F-EhZ"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="zdg-7F-EhZ"/>
+                                                                <constraint firstItem="rQQ-F2-dlR" firstAttribute="leading" secondItem="jRZ-PQ-0xG" secondAttribute="trailing" constant="8" id="JQR-oM-jWa"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="rQQ-F2-dlR" secondAttribute="trailing" constant="8" id="Ttz-PM-g3x"/>
+                                                                <constraint firstItem="rQQ-F2-dlR" firstAttribute="centerY" secondItem="RxW-2I-pPz" secondAttribute="centerY" id="W8y-MQ-3A6"/>
+                                                                <constraint firstItem="jRZ-PQ-0xG" firstAttribute="centerY" secondItem="RxW-2I-pPz" secondAttribute="centerY" id="kyN-S1-cE2"/>
+                                                                <constraint firstItem="jRZ-PQ-0xG" firstAttribute="leading" secondItem="RxW-2I-pPz" secondAttribute="leadingMargin" id="zc2-7s-ijd"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="rQQ-F2-dlR" firstAttribute="leading" secondItem="jRZ-PQ-0xG" secondAttribute="trailing" constant="8" id="JQR-oM-jWa"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="rQQ-F2-dlR" secondAttribute="trailing" constant="8" id="Ttz-PM-g3x"/>
-                                                        <constraint firstItem="rQQ-F2-dlR" firstAttribute="centerY" secondItem="RxW-2I-pPz" secondAttribute="centerY" id="W8y-MQ-3A6"/>
-                                                        <constraint firstItem="jRZ-PQ-0xG" firstAttribute="centerY" secondItem="RxW-2I-pPz" secondAttribute="centerY" id="kyN-S1-cE2"/>
-                                                        <constraint firstItem="jRZ-PQ-0xG" firstAttribute="leading" secondItem="RxW-2I-pPz" secondAttribute="leadingMargin" id="zc2-7s-ijd"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="progress" destination="rQQ-F2-dlR" id="DIb-nf-AIa"/>
-                                                    <outlet property="title" destination="jRZ-PQ-0xG" id="yTQ-du-cvZ"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="progress" destination="rQQ-F2-dlR" id="DIb-nf-AIa"/>
+                                                            <outlet property="title" destination="jRZ-PQ-0xG" id="yTQ-du-cvZ"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mbf-i4-jzO">
+                                                <rect key="frame" x="169" y="187" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="DuR-o5-irM" firstAttribute="top" secondItem="pbS-X5-m45" secondAttribute="top" id="My6-XM-kIr"/>
+                                            <constraint firstItem="mbf-i4-jzO" firstAttribute="centerX" secondItem="pbS-X5-m45" secondAttribute="centerX" id="Pe0-OQ-tEw"/>
+                                            <constraint firstItem="DuR-o5-irM" firstAttribute="leading" secondItem="pbS-X5-m45" secondAttribute="leading" id="VNZ-R9-jIC"/>
+                                            <constraint firstItem="mbf-i4-jzO" firstAttribute="centerY" secondItem="pbS-X5-m45" secondAttribute="centerY" id="fSo-Pv-elc"/>
+                                            <constraint firstAttribute="trailing" secondItem="DuR-o5-irM" secondAttribute="trailing" id="ffR-xX-9jx"/>
+                                            <constraint firstAttribute="bottom" secondItem="DuR-o5-irM" secondAttribute="bottom" id="wbG-8c-ofe"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="ac" destination="mbf-i4-jzO" id="Aaf-HP-Ayi"/>
+                                            <outlet property="tableView" destination="DuR-o5-irM" id="bbu-ce-FHa"/>
+                                        </connections>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-WT-rsc" customClass="PlayerView" customModule="Audiobooker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="579" width="359" height="60"/>
                                         <subviews>
@@ -292,16 +308,16 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="DuR-o5-irM" secondAttribute="trailing" id="ByY-dl-rPR"/>
-                                    <constraint firstItem="IyR-WT-rsc" firstAttribute="top" secondItem="DuR-o5-irM" secondAttribute="bottom" id="I76-F4-LJL"/>
+                                    <constraint firstItem="pbS-X5-m45" firstAttribute="top" secondItem="TMQ-c0-n7g" secondAttribute="bottom" id="Dz8-V9-REV"/>
+                                    <constraint firstItem="pbS-X5-m45" firstAttribute="leading" secondItem="KMw-S1-215" secondAttribute="leading" id="FNB-5T-P91"/>
                                     <constraint firstAttribute="trailing" secondItem="IyR-WT-rsc" secondAttribute="trailing" id="ImV-ZL-QCO"/>
-                                    <constraint firstItem="DuR-o5-irM" firstAttribute="leading" secondItem="KMw-S1-215" secondAttribute="leading" id="MeR-2W-oDB"/>
                                     <constraint firstItem="TMQ-c0-n7g" firstAttribute="leading" secondItem="KMw-S1-215" secondAttribute="leading" id="QEA-QD-1jv"/>
+                                    <constraint firstItem="IyR-WT-rsc" firstAttribute="top" secondItem="pbS-X5-m45" secondAttribute="bottom" id="Qox-5T-1l1"/>
                                     <constraint firstItem="IyR-WT-rsc" firstAttribute="leading" secondItem="KMw-S1-215" secondAttribute="leading" id="TGh-AH-bj5"/>
                                     <constraint firstAttribute="bottom" secondItem="IyR-WT-rsc" secondAttribute="bottom" constant="20" id="XQ7-sb-ZMs"/>
                                     <constraint firstAttribute="trailing" secondItem="TMQ-c0-n7g" secondAttribute="trailing" id="k7W-MG-mQF"/>
                                     <constraint firstItem="TMQ-c0-n7g" firstAttribute="top" secondItem="KMw-S1-215" secondAttribute="top" id="kcP-cs-oEs"/>
-                                    <constraint firstItem="DuR-o5-irM" firstAttribute="top" secondItem="TMQ-c0-n7g" secondAttribute="bottom" id="nHB-cz-boM"/>
+                                    <constraint firstAttribute="trailing" secondItem="pbS-X5-m45" secondAttribute="trailing" id="xc1-BB-KCr"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -315,13 +331,10 @@
                         <viewLayoutGuide key="safeArea" id="Mw9-bl-gry"/>
                     </view>
                     <connections>
-                        <outlet property="ac" destination="mbf-i4-jzO" id="2Ky-fX-C8v"/>
-                        <outlet property="author" destination="Hdm-xV-s3q" id="Lz4-ba-6Ue"/>
-                        <outlet property="bookTitle" destination="YLV-B6-DaN" id="qdS-Xn-aj5"/>
-                        <outlet property="cover" destination="uvW-RF-5j2" id="TPU-dR-5Ud"/>
+                        <outlet property="audioBookInfoView" destination="TMQ-c0-n7g" id="0la-g2-fjy"/>
+                        <outlet property="chapterListView" destination="pbS-X5-m45" id="3Mq-jr-ehm"/>
                         <outlet property="panel" destination="KMw-S1-215" id="afz-dc-0Yo"/>
                         <outlet property="playerView" destination="IyR-WT-rsc" id="iYR-Eb-XbF"/>
-                        <outlet property="tableView" destination="DuR-o5-irM" id="CMx-eZ-k2v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FqF-9W-aWx" userLabel="First Responder" sceneMemberID="firstResponder"/>

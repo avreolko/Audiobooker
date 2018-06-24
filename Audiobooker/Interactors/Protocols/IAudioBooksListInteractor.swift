@@ -9,6 +9,6 @@
 import Foundation
 
 protocol IAudioBooksListInteractor {
-    weak var output: IAudioBooksListView? { get set }
+    var output: IAudioBooksListView? { get set }
     func startLoadingBooks()
 }

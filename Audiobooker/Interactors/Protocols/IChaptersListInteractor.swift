@@ -9,6 +9,6 @@
 import Foundation
 
 protocol IChaptersListInteractor {
-    weak var output: IChaptersListInteractorOutput? { get set }
+    var output: IChaptersListInteractorOutput? { get set }
     func startLoadingChapters()
 }

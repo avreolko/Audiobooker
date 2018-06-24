@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 protocol IStateable: AnyObject {
-    var state: Codable { get }
-    var key: IStorageKey { get }
-    func encode(state: Codable)
+    var state: Codable? { get }
+    var key: String { get }
+    func restore(with state: Codable?)
 }
 
 extension IStateable {
