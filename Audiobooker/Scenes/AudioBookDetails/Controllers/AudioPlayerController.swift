@@ -10,17 +10,18 @@ import UIKit
 import AVFoundation
 
 class AudioPlayerController: IAudioPlayerController {
-    private weak var playerView: IPlayerView?
+    private weak var playerView: (UIView & IPlayerView)?
     weak var delegate: IAudioPlayerDelegate?
     private var audioPlayer: AVPlayer
     private var paused = true
     private var asset: AVAsset?
     private var _progress: Float = 0
     
-    required init(playerView: IPlayerView) {
+    required init(playerView: UIView & IPlayerView) {
         self.playerView = playerView
         self.audioPlayer = AVPlayer() // TODO добавить абстракцию от AVPlayer
         self.playerView?.delegate = self
+        UIViewDecorator.decorate(view: playerView, config: .player)
         
         let cmtime = CMTime(seconds: 0.2, preferredTimescale: Int32(44100))
         self.audioPlayer.addPeriodicTimeObserver(forInterval: cmtime, queue: .main) { (time) in
@@ -44,6 +45,8 @@ class AudioPlayerController: IAudioPlayerController {
     
     func startPlaying() {
         audioPlayer.play()
+        self.paused = false
+        self.playerView?.paused = self.paused
     }
     
     private func checkProgress(cmtime: CMTime) {
@@ -110,7 +113,7 @@ extension AudioPlayerController: IStateable {
     
     var key: String { return "audio player controller state" }
     
-    func restore(with state: Codable?) {
+    func restore(with state: Codable?) throws {
         guard let state = state as? AudioPlayerControllerState else {
             return
         }

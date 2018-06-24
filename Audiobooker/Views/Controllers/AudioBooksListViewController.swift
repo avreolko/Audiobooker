@@ -24,7 +24,14 @@ class AudioBooksListViewController: DataViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.deselectRows()
         self.interactor.startLoadingBooks()
+    }
+    
+    func deselectRows() {
+        if let index = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: index, animated: true)
+        }
     }
 }
 

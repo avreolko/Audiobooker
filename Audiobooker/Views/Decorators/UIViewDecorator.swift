@@ -18,5 +18,17 @@ class UIViewDecorator {
         view.layer.shadowOpacity = config.shadowOpacity
         view.layer.shadowOffset = .zero
         view.clipsToBounds = true
+        
+        if config.blur {
+            self.blur(view: view)
+        }
+    }
+    
+    private static func blur(view: UIView) {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, at: 0)
     }
 }

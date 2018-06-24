@@ -39,6 +39,6 @@ class AudiobookDetailsRootController: DataViewController {
 
 private extension AudiobookDetailsRootController {
     func decorate() {
-        UIViewDecorator.decorate(view: self.panel, config: .bigPanel)
+        UIViewDecorator.decorate(view: self.panel, config: .darkBlur)
     }
 }

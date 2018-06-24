@@ -12,7 +12,7 @@ import UIKit
 protocol IStateable: AnyObject {
     var state: Codable? { get }
     var key: String { get }
-    func restore(with state: Codable?)
+    func restore(with state: Codable?) throws
 }
 
 extension IStateable {

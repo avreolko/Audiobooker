@@ -37,4 +37,8 @@ class AudioBookCell: UITableViewCell {
     func setAuthor(_ author: String) {
         self.author.text = author
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        print("selected \(self.title.text!) - \(selected)")
+    }
 }
