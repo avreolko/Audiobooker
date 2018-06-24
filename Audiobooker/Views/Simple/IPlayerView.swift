@@ -16,8 +16,14 @@ protocol IPlayerViewDelegate: AnyObject {
 
 protocol IPlayerView: AnyObject {
     var delegate: IPlayerViewDelegate? { get set }
-    func set(progress: Float)
+    func set(progress: Float, animated: Bool)
     func set(title: String)
     
     var paused: Bool { get set }
+}
+
+extension IPlayerView {
+    func set(progress: Float, animated: Bool = true) {
+        self.set(progress: progress, animated: animated)
+    }
 }

@@ -19,15 +19,16 @@ class AudiobookDetailsRootController: DataViewController {
     @IBOutlet weak var chapterListView: ChapterListView!
     
     override func passData(_ object: Any?) {
-        if let audioBook = object as? AudioBook {
+        if let audiobook = object as? AudioBook {
             self.director = AudiobookDetailsDirector(with: self)
-            self.director?.audiobook = audioBook
+            self.director?.audiobook = audiobook
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.decorate()
+        
         self.director?.viewIsReady()
     }
     

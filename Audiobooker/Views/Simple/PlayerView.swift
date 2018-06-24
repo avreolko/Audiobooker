@@ -15,8 +15,8 @@ enum PlayerViewState {
     
     func buttonImageName() -> String {
         switch self {
-            case .paused: return "pause"
-            case .playing: return "play"
+            case .paused: return "play"
+            case .playing: return "pause"
         }
     }
 }
@@ -28,8 +28,8 @@ class PlayerView: UIView, IPlayerView {
     @IBOutlet var playButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
     
-    func set(progress: Float) {
-        self.progressBar.set(progress: progress)
+    func set(progress: Float, animated: Bool = true) {
+        self.progressBar.set(progress: progress, animated: animated)
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {

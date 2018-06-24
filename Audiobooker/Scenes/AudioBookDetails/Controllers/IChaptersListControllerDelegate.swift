@@ -10,4 +10,5 @@ import Foundation
 
 protocol IChaptersListControllerDelegate: AnyObject {
     func select(chapter: Chapter)
+    func loaded(chapters: [Chapter])
 }

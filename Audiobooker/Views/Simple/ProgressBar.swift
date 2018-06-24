@@ -17,6 +17,11 @@ class ProgressBar: UIView {
     }()
     
     func set(progress: Float, animated: Bool = true) {
+        guard progress >= 0 else {
+            assertionFailure("progress is NaN")
+            return
+        }
+        
         let lineWidth = self.width * CGFloat(progress)
         
         self.lineWidth.constant = lineWidth

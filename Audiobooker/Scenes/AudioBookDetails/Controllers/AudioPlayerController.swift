@@ -13,7 +13,7 @@ class AudioPlayerController: IAudioPlayerController {
     private weak var playerView: IPlayerView?
     weak var delegate: IAudioPlayerDelegate?
     private var audioPlayer: AVPlayer
-    private var paused = false
+    private var paused = true
     private var asset: AVAsset?
     private var _progress: Float = 0
     
@@ -32,27 +32,36 @@ class AudioPlayerController: IAudioPlayerController {
         return _progress
     }
     
-    func playFile(url: URL) {
+    func loadFile(url: URL) {
         let asset = AVAsset(url: url)
         self.asset = asset
         audioPlayer.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+        playerView?.set(progress: 0, animated: false)
+        
+        let mp3TagContainer = MP3TagContainer(pathToMP3File: url)
+        self.playerView?.set(title: mp3TagContainer.title)
+    }
+    
+    func startPlaying() {
         audioPlayer.play()
     }
     
     private func checkProgress(cmtime: CMTime) {
-        guard let asset = self.asset else { return }
+        guard let currentItem = self.audioPlayer.currentItem else {
+            return
+        }
         
-        let playedSeconds = CMTimeGetSeconds(cmtime)
-        let durationSeconds = CMTimeGetSeconds(asset.duration)
-        
-        let progress: Float = Float(playedSeconds / durationSeconds)
-        self.playerView?.set(progress: progress)
-    }
-}
+        let currentTime = currentItem.currentTime()
+        let duration = currentItem.duration
 
-extension AudioPlayerController: IChaptersListControllerDelegate {
-    func select(chapter: Chapter) {
-        self.playFile(url: chapter.audioFilePath)
+        let playedSeconds = CMTimeGetSeconds(currentTime)
+        let durationSeconds = CMTimeGetSeconds(duration)
+
+        
+        if playedSeconds >= 0, durationSeconds > 0 {
+            let progress: Float = Float(playedSeconds / durationSeconds)
+            self.playerView?.set(progress: progress)
+        }
     }
 }
 
@@ -64,11 +73,29 @@ extension AudioPlayerController: IPlayerViewDelegate {
     }
     
     func nextTapped() {
+        guard let url = (self.asset as? AVURLAsset)?.url,
+        let nextURL = self.delegate?.getNextFileURL(for: url) else {
+            assertionFailure()
+            return
+        }
         
+        self.loadFile(url: nextURL)
+        if !paused {
+            self.startPlaying()
+        }
     }
     
     func previousTapped() {
+        guard let url = (self.asset as? AVURLAsset)?.url,
+            let previousURL = self.delegate?.getPreviousFileURL(for: url) else {
+                assertionFailure()
+                return
+        }
         
+        self.loadFile(url: previousURL)
+        if !paused {
+            self.startPlaying()
+        }
     }
 }
 

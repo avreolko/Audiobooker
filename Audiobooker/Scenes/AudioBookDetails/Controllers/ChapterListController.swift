@@ -21,7 +21,7 @@ final class ChapterListController: NSObject {
         }
     }
     
-    private var chapters: [Chapter] = [Chapter]()
+    public var chapters: [Chapter] = [Chapter]()
     public weak var delegate: IChaptersListControllerDelegate?
     
     private weak var view: ChapterListView!
@@ -40,6 +40,8 @@ extension ChapterListController: IChaptersListInteractorOutput {
     func setChapters(chapters: [Chapter]) {
         self.chapters = chapters
         self.view.tableView.reloadData()
+        
+        self.delegate?.loaded(chapters: self.chapters)
     }
     
     func loadingChaptersHasStarted() {
@@ -47,36 +49,6 @@ extension ChapterListController: IChaptersListInteractorOutput {
     }
     func loadingChaptersHasEnded() {
         self.view.ac?.stopAnimating()
-    }
-}
-
-extension ChapterListController: IAudioPlayerDelegate {
-    func getNextFileURL(for url: URL) -> URL? {
-        for (index, chapter) in self.chapters.enumerated() {
-            if (chapter.audioFilePath.absoluteString == url.absoluteString) {
-                guard chapters.indices.contains(index - 1) else {
-                    return nil
-                }
-                
-                return chapters[index - 1].audioFilePath
-            }
-        }
-        
-        return nil
-    }
-    
-    func getPreviousFileURL(for url: URL) -> URL? {
-        for (index, chapter) in self.chapters.enumerated() {
-            if (chapter.audioFilePath.absoluteString == url.absoluteString) {
-                guard chapters.indices.contains(index + 1) else {
-                    return nil
-                }
-                
-                return chapters[index + 1].audioFilePath
-            }
-        }
-        
-        return nil
     }
 }
 
