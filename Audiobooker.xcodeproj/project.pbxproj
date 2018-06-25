@@ -49,6 +49,7 @@
 		A7C7777520CABDB40081BBC5 /* ChapterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777420CABDB40081BBC5 /* ChapterListController.swift */; };
 		A7C7777720CAC31B0081BBC5 /* IController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777620CAC31B0081BBC5 /* IController.swift */; };
 		A7C7777920CAC3420081BBC5 /* IInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777820CAC3420081BBC5 /* IInteractor.swift */; };
+		A7E34BB820E12DBD00D68C84 /* AudiobookProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		A7C7777420CABDB40081BBC5 /* ChapterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListController.swift; sourceTree = "<group>"; };
 		A7C7777620CAC31B0081BBC5 /* IController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IController.swift; sourceTree = "<group>"; };
 		A7C7777820CAC3420081BBC5 /* IInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInteractor.swift; sourceTree = "<group>"; };
+		A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookProgressHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +346,7 @@
 				A7A36E4620DD2C210070ECB6 /* Controllers */,
 				A7A36E4920DD2C550070ECB6 /* Interactors */,
 				A7A36E4820DD2C360070ECB6 /* Views */,
+				A7E34BB620E12D9400D68C84 /* Helpers */,
 			);
 			path = AudioBookDetails;
 			sourceTree = "<group>";
@@ -400,6 +403,14 @@
 			children = (
 			);
 			path = Routers;
+			sourceTree = "<group>";
+		};
+		A7E34BB620E12D9400D68C84 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,6 +554,7 @@
 				A70368E820C5788F00A32029 /* IMP3TagReader.swift in Sources */,
 				A7A36E3720D7F4E20070ECB6 /* ProgressBar.swift in Sources */,
 				A7A36E3920D7F6910070ECB6 /* PlayerView.swift in Sources */,
+				A7E34BB820E12DBD00D68C84 /* AudiobookProgressHelper.swift in Sources */,
 				A7C7777520CABDB40081BBC5 /* ChapterListController.swift in Sources */,
 				A70368EA20C579BE00A32029 /* MP3TagReader.swift in Sources */,
 				A7C7777920CAC3420081BBC5 /* IInteractor.swift in Sources */,

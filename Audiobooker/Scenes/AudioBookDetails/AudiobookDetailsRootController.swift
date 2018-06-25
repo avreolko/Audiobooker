@@ -20,8 +20,11 @@ class AudiobookDetailsRootController: DataViewController {
     
     override func passData(_ object: Any?) {
         if let audiobook = object as? AudioBook {
-            self.director = AudiobookDetailsDirector(with: self)
-            self.director?.audiobook = audiobook
+            let progressHelper = AudiobookProgressHelper(storage: DefaultsStorage())
+            
+            self.director = AudiobookDetailsDirector(rootViewController: self,
+                                                     audiobook: audiobook,
+                                                     progressHelper: progressHelper)
         }
     }
     

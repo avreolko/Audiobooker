@@ -10,22 +10,26 @@ import UIKit
 import AVFoundation
 
 class AudioPlayerController: NSObject, IAudioPlayerController {
-    private weak var playerView: (UIView & IPlayerView)?
-    weak var delegate: IAudioPlayerDelegate?
+    private weak var playerView: (UIView & IPlayerView)!
     private var audioPlayer: AVPlayer
     private var audioPlayer1: AVAudioPlayer?
     private var paused = true
     private var asset: AVAsset?
     private var _progress: Float = 0
+    weak var delegate: IAudioPlayerDelegate?
     
-    required init(playerView: UIView & IPlayerView) {
+    required init(playerView: UIView & IPlayerView,
+                  delegate: IAudioPlayerDelegate,
+                  audioPlayer: AVPlayer) {
         self.playerView = playerView
-        self.audioPlayer = AVPlayer() // TODO добавить абстракцию от AVPlayer
-        UIViewDecorator.decorate(view: playerView, config: .player)
+        self.delegate = delegate
+        self.audioPlayer = audioPlayer // TODO добавить абстракцию от AVPlayer
     }
     
     func viewIsReady() {
-        self.playerView?.delegate = self
+        UIViewDecorator.decorate(view: playerView, config: .player)
+        
+        self.playerView.delegate = self
         let cmtime = CMTime(seconds: 0.2, preferredTimescale: Int32(44100))
         self.audioPlayer.addPeriodicTimeObserver(forInterval: cmtime, queue: .main) { (time) in
             self.checkProgress(cmtime: cmtime)
@@ -40,7 +44,7 @@ class AudioPlayerController: NSObject, IAudioPlayerController {
         let asset = AVAsset(url: url)
         self.asset = asset
         audioPlayer.replaceCurrentItem(with: AVPlayerItem(asset: asset))
-        playerView?.set(progress: 0, animated: false)
+        playerView.set(progress: 0, animated: false)
         
         let mp3TagContainer = MP3TagContainer(pathToMP3File: url)
         self.playerView?.set(title: mp3TagContainer.title)
@@ -75,7 +79,7 @@ extension AudioPlayerController: IPlayerViewDelegate {
     func playTapped() {
         self.paused = !self.paused
         self.paused ? self.audioPlayer.pause() : self.audioPlayer.play()
-        self.playerView?.paused = self.paused
+        self.playerView.paused = self.paused
     }
     
     func nextTapped() {

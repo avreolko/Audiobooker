@@ -9,30 +9,31 @@
 import UIKit
 
 final class ChapterListController: NSObject, IController {
-    let chapterCellReuseID = "chapterCellReuseID"
-    var selectedChapterIndex: Int?
-    var interactor: IChaptersListInteractor? {
-        didSet {
-            interactor?.startLoadingChapters()
-        }
-    }
+    private weak var view: ChapterListView!
+    
+    private let chapterCellReuseID = "chapterCellReuseID"
+    private var interactor: IChaptersListInteractor
+    private var selectedChapterIndex: Int?
     
     public var chapters: [Chapter] = [Chapter]()
     public weak var delegate: IChaptersListControllerDelegate?
     
-    private weak var view: ChapterListView!
     
-    init(view: ChapterListView) {
+    init(view: ChapterListView,
+         interactor: IChaptersListInteractor,
+         delegate: IChaptersListControllerDelegate) {
+        
         self.view = view
-        
-        super.init()
-        
-        self.view.tableView.delegate = self
-        self.view.tableView.dataSource = self
+        self.interactor = interactor
+        self.delegate = delegate
     }
     
     func viewIsReady() {
+        self.view.tableView.delegate = self
+        self.view.tableView.dataSource = self
         
+        self.interactor.output = self
+        self.interactor.startLoadingChapters()
     }
     
     deinit {
@@ -50,10 +51,10 @@ extension ChapterListController: IChaptersListInteractorOutput {
     }
     
     func loadingChaptersHasStarted() {
-        self.view.ac?.startAnimating()
+        self.view.ac.startAnimating()
     }
     func loadingChaptersHasEnded() {
-        self.view.ac?.stopAnimating()
+        self.view.ac.stopAnimating()
     }
 }
 

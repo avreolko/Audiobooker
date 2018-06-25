@@ -8,56 +8,55 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 protocol IDirector {
     associatedtype RootViewController: UIViewController
-    init(with rootViewController: RootViewController)
     func assembly()
     func viewIsReady()
 }
 
 class AudiobookDetailsDirector: IDirector {
+    typealias RootViewController = AudiobookDetailsRootController
+    
+    private var progressHelper: AudiobookProgressHelper
+    
     private unowned var rootVC: RootViewController
     
     var audiobookInfoController: AudiobookInfoController?
     var chapterListController: ChapterListController?
     var audioPlayerController: AudioPlayerController?
     
-    var audiobook: AudioBook?
+    var audiobook: AudioBook
     
-    typealias RootViewController = AudiobookDetailsRootController
-    
-    required init(with rootViewController: RootViewController) {
+    public init(rootViewController: RootViewController,
+                            audiobook: AudioBook,
+                            progressHelper: AudiobookProgressHelper) {
+        
         self.rootVC = rootViewController
+        self.audiobook = audiobook
+        self.progressHelper = progressHelper
     }
     
     func viewIsReady() {
         self.assembly()
         self.audioPlayerController?.viewIsReady()
         self.chapterListController?.viewIsReady()
-        self.audioPlayerController?.viewIsReady()
+        self.audiobookInfoController?.viewIsReady()
     }
     
     public func assembly() {
-        guard let audiobook = self.audiobook else {
-            assertionFailure("Audiobook shouldn't be nil at this point")
-            return
-        }
+        self.audiobookInfoController = AudiobookInfoController(view: self.rootVC.audioBookInfoView,
+                                                              audiobook: self.audiobook)
         
-        let audiobookInfoController = AudiobookInfoController(view: self.rootVC.audioBookInfoView)
-        audiobookInfoController.audiobook = self.audiobook
-        self.audiobookInfoController = audiobookInfoController
+        let interactor = ChapterListInteractor(audioBook: self.audiobook)
+        self.chapterListController = ChapterListController(view: self.rootVC.chapterListView,
+                                                           interactor: interactor,
+                                                           delegate: self)
         
-        let chapterListController = ChapterListController(view: self.rootVC.chapterListView)
-        let interactor = ChapterListInteractor(audioBook: audiobook)
-        interactor.output = chapterListController
-        chapterListController.interactor = interactor
-        self.chapterListController = chapterListController
-        
-        let audioPlayerController = AudioPlayerController(playerView: self.rootVC.playerView)
-        audioPlayerController.delegate = self
-        self.audioPlayerController = audioPlayerController
-        chapterListController.delegate = self
+        self.audioPlayerController = AudioPlayerController(playerView: self.rootVC.playerView,
+                                                          delegate: self,
+                                                          audioPlayer: AVPlayer())
     }
 }
 

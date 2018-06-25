@@ -15,7 +15,6 @@ protocol IAudioPlayerDelegate: AnyObject {
 }
 
 protocol IAudioPlayerController: IController {
-    init(playerView: (UIView & IPlayerView))
     var progress: Float { get }
     var delegate: IAudioPlayerDelegate? { get set }
     func loadFile(url: URL)
