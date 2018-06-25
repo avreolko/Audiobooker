@@ -12,4 +12,12 @@ import UIKit
 class ChapterCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var progress: UILabel!
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        } else {
+            self.backgroundColor = UIColor.clear
+        }
+    }
 }

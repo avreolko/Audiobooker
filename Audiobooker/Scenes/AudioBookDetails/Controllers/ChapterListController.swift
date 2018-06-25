@@ -8,13 +8,9 @@
 
 import UIKit
 
-final class ChapterListController: NSObject {
+final class ChapterListController: NSObject, IController {
     let chapterCellReuseID = "chapterCellReuseID"
-    var selectedChapterIndex: Int? {
-        didSet {
-            // TODO scroll to chapter position in table
-        }
-    }
+    var selectedChapterIndex: Int?
     var interactor: IChaptersListInteractor? {
         didSet {
             interactor?.startLoadingChapters()
@@ -34,6 +30,14 @@ final class ChapterListController: NSObject {
         self.view.tableView.delegate = self
         self.view.tableView.dataSource = self
     }
+    
+    func viewIsReady() {
+        
+    }
+    
+    deinit {
+        self.encode(state: self.state)
+    }
 }
 
 extension ChapterListController: IChaptersListInteractorOutput {
@@ -42,6 +46,7 @@ extension ChapterListController: IChaptersListInteractorOutput {
         self.view.tableView.reloadData()
         
         self.delegate?.loaded(chapters: self.chapters)
+        self.restoreState()
     }
     
     func loadingChaptersHasStarted() {
@@ -80,11 +85,14 @@ extension ChapterListController: UITableViewDelegate, UITableViewDataSource {
         
         let chapter = self.chapters[indexPath.row]
         self.delegate?.select(chapter: chapter)
+        self.view.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
 
 extension ChapterListController: IStateable {
-    var state: Codable? {
+    typealias State = ChapterListControllerState
+    
+    var state: State? {
         guard let index = self.selectedChapterIndex else {
             return nil
         }
@@ -94,12 +102,10 @@ extension ChapterListController: IStateable {
     
     var key: String { return "audio player controller state" }
     
-    func restore(with state: Codable?) {
-        guard let state = state as? ChapterListControllerState else {
-            return
-        }
-        
+    func restore(with state: State) {
         self.selectedChapterIndex = state.selectedChapterIndex
+        let indexPath = IndexPath(row: state.selectedChapterIndex, section: 0)
+        self.view.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
 

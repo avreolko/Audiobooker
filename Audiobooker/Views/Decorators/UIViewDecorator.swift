@@ -15,20 +15,25 @@ class UIViewDecorator {
         view.layer.cornerRadius = config.cornerRadius
         view.layer.shadowColor = config.shadowColor
         view.layer.shadowRadius = config.shadowRadius
-        view.layer.shadowOpacity = config.shadowOpacity
+        view.layer.shadowOpacity = 1
         view.layer.shadowOffset = .zero
         view.clipsToBounds = true
+        view.layer.masksToBounds = false
         
         if config.blur {
-            self.blur(view: view)
+            self.blur(view: view, config: config)
         }
     }
     
-    private static func blur(view: UIView) {
+    private static func blur(view: UIView, config: UIViewDecoratorConfig) {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        blurEffectView.layer.cornerRadius = config.cornerRadius
+        blurEffectView.clipsToBounds = true
+        
         view.insertSubview(blurEffectView, at: 0)
     }
 }

@@ -14,7 +14,7 @@ protocol IAudioPlayerDelegate: AnyObject {
     func getPreviousFileURL(for url: URL) -> URL?
 }
 
-protocol IAudioPlayerController {
+protocol IAudioPlayerController: IController {
     init(playerView: (UIView & IPlayerView))
     var progress: Float { get }
     var delegate: IAudioPlayerDelegate? { get set }

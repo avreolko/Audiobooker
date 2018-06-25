@@ -11,7 +11,7 @@
 		A70368C620C3D38700A32029 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368C520C3D38700A32029 /* Chapter.swift */; };
 		A70368CA20C403DB00A32029 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368C920C403DB00A32029 /* CoreDataManager.swift */; };
 		A70368CD20C4063B00A32029 /* UIViewDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368CC20C4063B00A32029 /* UIViewDecorator.swift */; };
-		A70368D420C4083000A32029 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D320C4083000A32029 /* File.swift */; };
+		A70368D420C4083000A32029 /* UIViewDecoratorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D320C4083000A32029 /* UIViewDecoratorConfig.swift */; };
 		A70368D620C4163C00A32029 /* ChapterListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D520C4163C00A32029 /* ChapterListInteractor.swift */; };
 		A70368D820C4164E00A32029 /* IChaptersListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D720C4164E00A32029 /* IChaptersListInteractor.swift */; };
 		A70368DA20C4170300A32029 /* IChaptersListInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D920C4170300A32029 /* IChaptersListInteractorOutput.swift */; };
@@ -79,7 +79,7 @@
 		A70368C520C3D38700A32029 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		A70368C920C403DB00A32029 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A70368CC20C4063B00A32029 /* UIViewDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDecorator.swift; sourceTree = "<group>"; };
-		A70368D320C4083000A32029 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		A70368D320C4083000A32029 /* UIViewDecoratorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDecoratorConfig.swift; sourceTree = "<group>"; };
 		A70368D520C4163C00A32029 /* ChapterListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListInteractor.swift; sourceTree = "<group>"; };
 		A70368D720C4164E00A32029 /* IChaptersListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChaptersListInteractor.swift; sourceTree = "<group>"; };
 		A70368D920C4170300A32029 /* IChaptersListInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChaptersListInteractorOutput.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 		A70368D220C4082300A32029 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				A70368D320C4083000A32029 /* File.swift */,
+				A70368D320C4083000A32029 /* UIViewDecoratorConfig.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -454,6 +454,11 @@
 					A741F81B20C3B9E6003E2B42 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A741F82F20C3B9E6003E2B42 = {
 						CreatedOnToolsVersion = 9.2;
@@ -522,7 +527,7 @@
 				A70368CA20C403DB00A32029 /* CoreDataManager.swift in Sources */,
 				A741F82220C3B9E6003E2B42 /* AudioBooksListViewController.swift in Sources */,
 				A7A36E3F20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift in Sources */,
-				A70368D420C4083000A32029 /* File.swift in Sources */,
+				A70368D420C4083000A32029 /* UIViewDecoratorConfig.swift in Sources */,
 				A70368E320C41AA000A32029 /* DataViewController.swift in Sources */,
 				A775C86120DF8A430003E9D7 /* ChapterListView.swift in Sources */,
 				A70368E520C5780500A32029 /* MP3ModelHelper.swift in Sources */,

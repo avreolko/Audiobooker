@@ -10,12 +10,21 @@ import Foundation
 import UIKit
 
 protocol IStateable: AnyObject {
-    var state: Codable? { get }
+    associatedtype State: Codable
+    var state: State? { get }
     var key: String { get }
-    func restore(with state: Codable?) throws
+    func restore(with state: State)
 }
 
 extension IStateable {
+    
+    // default implementation
+    func restoreState() {
+        if let state: State = self.decodeState() {
+            self.restore(with: state)
+        }
+    }
+    
     // call it on dealloc
     func encode<T: Codable>(state: T) {
         let storage = DefaultsStorage()
@@ -25,7 +34,7 @@ extension IStateable {
     // call it whenever you need to restore state
     func decodeState<T: Codable>() -> T? {
         let storage = DefaultsStorage()
-        return storage.fetch(for: self.key)
+        return storage.fetch(for: self.key) as T?
     }
 }
 

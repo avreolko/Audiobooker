@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol IController: AnyObject {
-    
+protocol IController: NSObjectProtocol {
+    func viewIsReady()
 }

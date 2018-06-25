@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AudiobookInfoController {
+class AudiobookInfoController: NSObject, IController {
     private weak var view: AudiobookInfoView!
     
     public var audiobook: AudioBook? {
@@ -20,6 +20,10 @@ class AudiobookInfoController {
     
     init(view: AudiobookInfoView) {
         self.view = view
+    }
+    
+    func viewIsReady() {
+        
     }
 }
 
