@@ -1,5 +1,5 @@
 //
-//  CoreDataManager.swift
+//  IChaptersListPresenter.swift
 //  Audiobooker
 //
 //  Created by Valentin Cherepyanko on 03/06/2018.
@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import CoreData
 
-class CoreDataManager {
-//    func get
+protocol IChapterListInteractor {
+    var output: IChaptersListInteractorOutput? { get set }
+    func startLoadingChapters()
 }

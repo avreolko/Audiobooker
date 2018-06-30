@@ -12,7 +12,7 @@ final class ChapterListController: NSObject, IController {
     private weak var view: ChapterListView!
     
     private let chapterCellReuseID = "chapterCellReuseID"
-    private var interactor: IChaptersListInteractor
+    private var interactor: IChapterListInteractor
     private var selectedChapterIndex: Int?
     
     public var chapters: [Chapter] = [Chapter]()
@@ -20,7 +20,7 @@ final class ChapterListController: NSObject, IController {
     
     
     init(view: ChapterListView,
-         interactor: IChaptersListInteractor,
+         interactor: IChapterListInteractor,
          delegate: IChaptersListControllerDelegate) {
         
         self.view = view

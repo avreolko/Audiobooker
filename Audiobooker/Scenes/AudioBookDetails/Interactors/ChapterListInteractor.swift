@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ChapterListInteractor: IChaptersListInteractor {
+final class ChapterListInteractor: IChapterListInteractor {
     let dataProvider: IAudioBookDataProvider = AudioBookDataProvider()
     
     public weak var output: IChaptersListInteractorOutput?
