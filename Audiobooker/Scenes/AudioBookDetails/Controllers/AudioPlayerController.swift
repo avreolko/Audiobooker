@@ -16,7 +16,7 @@ class AudioPlayerController: NSObject, IAudioPlayerController {
     private var asset: AVAsset?
     private var audioBookProgress: AudioBookProgress?
     
-    private var _progress: Float?
+    private var _progress: Float = 0
     
     weak var delegate: IAudioPlayerDelegate?
     

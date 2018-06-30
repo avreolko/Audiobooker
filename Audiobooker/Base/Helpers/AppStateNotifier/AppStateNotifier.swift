@@ -20,14 +20,14 @@ protocol IAppStateNotifier {
 }
 
 class AppStateNotifier {
-    private var listeners = NSHashTable<IAppStateListener>.weakObjects()
+    private var listeners: [Weak<IAppStateListener>] = [Weak<IAppStateListener>]()
     
     static let shared: IAppStateNotifier = AppStateNotifier()
 }
 
 extension AppStateNotifier: IAppStateNotifier {
     func register(listener: IAppStateListener) {
-        self.listeners.add(listener)
+        self.listeners.append(Weak(listener))
     }
     
     func appChangedState(to state: AppState) {
@@ -41,20 +41,28 @@ extension AppStateNotifier: IAppStateNotifier {
 
 private extension AppStateNotifier {
     func notifyAppIsActive() {
-        for listener in self.listeners.allObjects {
-            listener.appBecomeActive()
+        for weakObject in self.listeners {
+            weakObject.value?.appBecomeActive()
         }
     }
     
     func notifyAppIsNonActive() {
-        for listener in self.listeners.allObjects {
-            listener.appBecomeNonActive()
+        for weakObject in self.listeners {
+            weakObject.value?.appBecomeNonActive()
         }
     }
     
     func notifyAppIsUnknown() {
-        for listener in self.listeners.allObjects {
-            listener.appBecomeUnknown()
+        for weakObject in self.listeners {
+            weakObject.value?.appBecomeUnknown()
         }
+    }
+}
+
+struct Weak<T: AnyObject> {
+    weak var value: T?
+    
+    init(_ value: T) {
+        self.value = value
     }
 }

@@ -16,7 +16,7 @@ protocol IDirector {
     func viewIsReady()
 }
 
-class AudiobookDetailsDirector: IDirector {
+class AudiobookDetailsDirector: NSObject, IDirector {
     typealias RootViewController = AudiobookDetailsRootController
     
     private var progressHelper: AudiobookProgressHelper
