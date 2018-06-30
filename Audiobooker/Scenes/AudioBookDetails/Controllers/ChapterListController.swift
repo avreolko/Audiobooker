@@ -13,11 +13,10 @@ final class ChapterListController: NSObject, IController {
     
     private let chapterCellReuseID = "chapterCellReuseID"
     private var interactor: IChapterListInteractor
-    private var selectedChapterIndex: Int?
+    public var selectedChapterIndex: Int?
     
     public var chapters: [Chapter] = [Chapter]()
     public weak var delegate: IChaptersListControllerDelegate?
-    
     
     init(view: ChapterListView,
          interactor: IChapterListInteractor,

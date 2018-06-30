@@ -12,18 +12,22 @@ import AVFoundation
 class AudioPlayerController: NSObject, IAudioPlayerController {
     private weak var playerView: (UIView & IPlayerView)!
     private var audioPlayer: AVPlayer
-    private var audioPlayer1: AVAudioPlayer?
     private var paused = true
     private var asset: AVAsset?
-    private var _progress: Float = 0
+    private var audioBookProgress: AudioBookProgress?
+    
+    private var _progress: Float?
+    
     weak var delegate: IAudioPlayerDelegate?
     
     required init(playerView: UIView & IPlayerView,
                   delegate: IAudioPlayerDelegate,
-                  audioPlayer: AVPlayer) {
+                  audioPlayer: AVPlayer,
+                  audioBookProgress: AudioBookProgress? = nil) {
         self.playerView = playerView
         self.delegate = delegate
         self.audioPlayer = audioPlayer // TODO добавить абстракцию от AVPlayer
+        self.audioBookProgress = audioBookProgress
     }
     
     func viewIsReady() {
@@ -34,10 +38,6 @@ class AudioPlayerController: NSObject, IAudioPlayerController {
         self.audioPlayer.addPeriodicTimeObserver(forInterval: cmtime, queue: .main) { (time) in
             self.checkProgress(cmtime: cmtime)
         }
-    }
-    
-    var progress: Float {
-        return _progress
     }
     
     func loadFile(url: URL) {
@@ -67,11 +67,23 @@ class AudioPlayerController: NSObject, IAudioPlayerController {
         let playedSeconds = CMTimeGetSeconds(currentTime)
         let durationSeconds = CMTimeGetSeconds(duration)
 
-        
         if playedSeconds >= 0, durationSeconds > 0 {
             let progress: Float = Float(playedSeconds / durationSeconds)
             self.playerView?.set(progress: progress)
+            _progress = progress
         }
+    }
+    
+    var progress: Float? {
+        return _progress
+    }
+    
+    var fileURL: URL? {
+        guard let url = (self.asset as? AVURLAsset)?.url else {
+            return nil
+        }
+        
+        return url
     }
 }
 
@@ -107,28 +119,4 @@ extension AudioPlayerController: IPlayerViewDelegate {
             self.startPlaying()
         }
     }
-}
-
-extension AudioPlayerController: IStateable {
-    typealias State = AudioPlayerControllerState
-    
-    var state: State? {
-        guard let url = (self.asset as? AVURLAsset)?.url else {
-            return nil
-        }
-        
-        return AudioPlayerControllerState(progress: self.progress, assetURL: url)
-    }
-    
-    var key: String { return "audio player controller state" }
-    
-    func restore(with state: State) {
-        _progress = state.progress
-        self.asset = AVAsset(url: state.assetURL)
-    }
-}
-
-struct AudioPlayerControllerState: Codable {
-    var progress: Float
-    var assetURL: URL
 }

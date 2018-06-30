@@ -23,11 +23,11 @@ class AudiobookDetailsDirector: IDirector {
     
     private unowned var rootVC: RootViewController
     
-    var audiobookInfoController: AudiobookInfoController?
-    var chapterListController: ChapterListController?
-    var audioPlayerController: AudioPlayerController?
+    private var audiobookInfoController: AudiobookInfoController?
+    private var chapterListController: ChapterListController?
+    private var audioPlayerController: AudioPlayerController?
     
-    var audiobook: AudioBook
+    private var audiobook: AudioBook
     
     public init(rootViewController: RootViewController,
                             audiobook: AudioBook,
@@ -103,40 +103,32 @@ extension AudiobookDetailsDirector: IChaptersListControllerDelegate {
     }
 }
 
-//extension AudiobookDetailsDirector: IStateable {
-//    var state: Codable? {
-//        guard let audioState = self.audioPlayerController?.state as? AudioPlayerControllerState,
-//            let listState = self.chapterListController?.state as? ChapterListControllerState else {
-//            return nil
-//        }
-//
-//        return AudiobookDetailsDirectorState(audioplayerControllerState: audioState,
-//                                             chapterListControllerState: listState)
-//    }
-//
-//    var key: String {
-//        return "AudiobookDetailsDirector"
-//    }
-//
-//    func restore() {
-//        guard let state: AudiobookDetailsDirectorState = self.decodeState() else {
-//            return
-//        }
-//
-//        self.restore(with: state)
-//    }
-//
-//    func restore(with state: Codable?) {
-//        guard let state = state as? AudiobookDetailsDirectorState else {
-//            return
-//        }
-//
-//        self.audioPlayerController?.restore(with: state.audioplayerControllerState)
-//        self.chapterListController?.restore(with: state.chapterListControllerState)
-//    }
-//}
-//
-//struct AudiobookDetailsDirectorState: Codable {
-//    var audioplayerControllerState: AudioPlayerControllerState
-//    var chapterListControllerState: ChapterListControllerState
-//}
+extension AudiobookDetailsDirector: IAppStateListener {
+    func appBecomeActive() { }
+    func appBecomeUnknown() { }
+    
+    func appBecomeNonActive() {
+        self.saveProgress()
+    }
+}
+
+private extension AudiobookDetailsDirector {
+    func saveProgress() {
+        guard
+            let selectedChapterIndex = self.chapterListController?.selectedChapterIndex,
+            let chapterURL = self.audioPlayerController?.fileURL,
+            let chapterProgress = self.audioPlayerController?.progress else {
+                
+                assertionFailure("Что-то пошло не так с сохранением прогресса")
+                return
+        }
+        
+        let audioBookURL = self.audiobook.chaptersDirectoryPath
+        
+        var audioBookProgress = self.progressHelper.getProgress(for: audioBookURL)
+        audioBookProgress.set(progress: chapterProgress, for: chapterURL)
+        audioBookProgress.selectedChapterIndex = selectedChapterIndex
+        
+        self.progressHelper.save(progress: audioBookProgress, for: audioBookURL)
+    }
+}
