@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Audio Books List View Controller-->
+        <!--Audio Book List Root Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AudioBooksListViewController" customModule="Audiobooker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AudioBookListRootController" customModule="Audiobooker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,67 +21,82 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space" translatesAutoresizingMaskIntoConstraints="NO" id="0aA-Hj-q4k">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lCl-Ye-33j">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="audioBookCellReuseID" rowHeight="200" id="0O1-Nh-d1L" userLabel="Audio Book Cell" customClass="AudioBookCell" customModule="Audiobooker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0O1-Nh-d1L" id="8OO-G7-MRK">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-BP-ehs">
-                                                    <rect key="frame" x="157" y="21" width="193" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.90588235289999997" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7HD-LO-Lae">
-                                                    <rect key="frame" x="25" y="20.5" width="120" height="160"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Eg-BL-9ta" customClass="AudioBookListView" customModule="Audiobooker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lCl-Ye-33j">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="audioBookCellReuseID" rowHeight="200" id="0O1-Nh-d1L" userLabel="Audio Book Cell" customClass="AudioBookCell" customModule="Audiobooker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0O1-Nh-d1L" id="8OO-G7-MRK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-BP-ehs">
+                                                            <rect key="frame" x="157" y="20" width="193" height="20"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" red="0.90588235289999997" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7HD-LO-Lae">
+                                                            <rect key="frame" x="25" y="20" width="120" height="160"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="160" id="hZ3-dB-IVm"/>
+                                                                <constraint firstAttribute="width" constant="120" id="kg6-vf-vxv"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7c2-sK-UeN">
+                                                            <rect key="frame" x="157" y="48" width="193" height="20"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" red="0.90588235289999997" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="160" id="hZ3-dB-IVm"/>
-                                                        <constraint firstAttribute="width" constant="120" id="kg6-vf-vxv"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="7c2-sK-UeN" secondAttribute="trailing" constant="10" id="E8l-aD-5N6"/>
+                                                        <constraint firstItem="7HD-LO-Lae" firstAttribute="leading" secondItem="8OO-G7-MRK" secondAttribute="leadingMargin" constant="10" id="HIK-fg-6hN"/>
+                                                        <constraint firstItem="7c2-sK-UeN" firstAttribute="leading" secondItem="EpR-BP-ehs" secondAttribute="leading" id="KNj-k9-hI4"/>
+                                                        <constraint firstItem="7c2-sK-UeN" firstAttribute="top" secondItem="EpR-BP-ehs" secondAttribute="bottom" constant="8" id="Y89-sS-4ld"/>
+                                                        <constraint firstItem="EpR-BP-ehs" firstAttribute="leading" secondItem="7HD-LO-Lae" secondAttribute="trailing" constant="12" id="gHb-Rx-iwQ"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="EpR-BP-ehs" secondAttribute="trailing" constant="10" id="izL-Rr-7c5"/>
+                                                        <constraint firstItem="EpR-BP-ehs" firstAttribute="top" secondItem="7HD-LO-Lae" secondAttribute="top" id="m8m-Cc-bwI"/>
+                                                        <constraint firstItem="7HD-LO-Lae" firstAttribute="centerY" secondItem="8OO-G7-MRK" secondAttribute="centerY" id="nAX-2r-TnF"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7c2-sK-UeN">
-                                                    <rect key="frame" x="157" y="49" width="193" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.90588235289999997" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7c2-sK-UeN" secondAttribute="trailing" constant="10" id="E8l-aD-5N6"/>
-                                                <constraint firstItem="7HD-LO-Lae" firstAttribute="leading" secondItem="8OO-G7-MRK" secondAttribute="leadingMargin" constant="10" id="HIK-fg-6hN"/>
-                                                <constraint firstItem="7c2-sK-UeN" firstAttribute="leading" secondItem="EpR-BP-ehs" secondAttribute="leading" id="KNj-k9-hI4"/>
-                                                <constraint firstItem="7c2-sK-UeN" firstAttribute="top" secondItem="EpR-BP-ehs" secondAttribute="bottom" constant="8" id="Y89-sS-4ld"/>
-                                                <constraint firstItem="EpR-BP-ehs" firstAttribute="leading" secondItem="7HD-LO-Lae" secondAttribute="trailing" constant="12" id="gHb-Rx-iwQ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="EpR-BP-ehs" secondAttribute="trailing" constant="10" id="izL-Rr-7c5"/>
-                                                <constraint firstItem="EpR-BP-ehs" firstAttribute="top" secondItem="7HD-LO-Lae" secondAttribute="top" id="m8m-Cc-bwI"/>
-                                                <constraint firstItem="7HD-LO-Lae" firstAttribute="centerY" secondItem="8OO-G7-MRK" secondAttribute="centerY" id="nAX-2r-TnF"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="author" destination="7c2-sK-UeN" id="QFD-pP-CWO"/>
-                                            <outlet property="cover" destination="7HD-LO-Lae" id="j8I-Wd-N9K"/>
-                                            <outlet property="title" destination="EpR-BP-ehs" id="ZqN-Dy-DMS"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="author" destination="7c2-sK-UeN" id="QFD-pP-CWO"/>
+                                                    <outlet property="cover" destination="7HD-LO-Lae" id="j8I-Wd-N9K"/>
+                                                    <outlet property="title" destination="EpR-BP-ehs" id="ZqN-Dy-DMS"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="lCl-Ye-33j" secondAttribute="trailing" id="CE0-NA-Q10"/>
+                                    <constraint firstItem="lCl-Ye-33j" firstAttribute="leading" secondItem="1Eg-BL-9ta" secondAttribute="leading" id="Dta-1S-EBK"/>
+                                    <constraint firstAttribute="bottom" secondItem="lCl-Ye-33j" secondAttribute="bottom" id="cui-CA-NOn"/>
+                                    <constraint firstItem="lCl-Ye-33j" firstAttribute="top" secondItem="1Eg-BL-9ta" secondAttribute="top" id="gE0-T5-uyB"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="tableView" destination="lCl-Ye-33j" id="22l-Bt-L0n"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lCl-Ye-33j" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0Gx-xC-zh2"/>
-                            <constraint firstItem="lCl-Ye-33j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9da-MJ-Ovn"/>
-                            <constraint firstItem="lCl-Ye-33j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="F2p-VL-FYG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1Eg-BL-9ta" secondAttribute="bottom" id="1hg-px-gDA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1Eg-BL-9ta" secondAttribute="trailing" id="67Z-u0-ONf"/>
+                            <constraint firstItem="1Eg-BL-9ta" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="B4X-RN-32z"/>
+                            <constraint firstItem="1Eg-BL-9ta" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dae-DO-vok"/>
                             <constraint firstItem="0aA-Hj-q4k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PUI-ag-GqT"/>
-                            <constraint firstItem="lCl-Ye-33j" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dqz-fO-kp7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0aA-Hj-q4k" secondAttribute="trailing" id="e9A-ug-lAF"/>
                             <constraint firstItem="0aA-Hj-q4k" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rrZ-Hq-qu4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0aA-Hj-q4k" secondAttribute="bottom" id="zwx-jU-ytz"/>
@@ -90,7 +104,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="lCl-Ye-33j" id="xde-fX-7hR"/>
+                        <outlet property="audioBooksListView" destination="1Eg-BL-9ta" id="rM1-JA-3Ht"/>
                         <segue destination="Kpe-w7-tGm" kind="presentation" identifier="selectAudioBook" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="obb-11-8Fy"/>
                     </connections>
                 </viewController>
@@ -182,13 +196,13 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название главы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRZ-PQ-0xG" userLabel="Title">
-                                                                    <rect key="frame" x="15" y="12" width="263" height="21"/>
+                                                                    <rect key="frame" x="15" y="11.5" width="263" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="0.90588235289999997" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQQ-F2-dlR" userLabel="Progress">
-                                                                    <rect key="frame" x="286" y="11" width="50" height="21"/>
+                                                                    <rect key="frame" x="286" y="11.5" width="50" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="zdg-7F-EhZ"/>
                                                                     </constraints>
@@ -215,7 +229,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="mbf-i4-jzO">
-                                                <rect key="frame" x="169" y="169" width="20" height="20"/>
+                                                <rect key="frame" x="169.5" y="169.5" width="20" height="20"/>
                                             </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

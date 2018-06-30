@@ -45,7 +45,7 @@ class AudiobookDetailsDirector: IDirector {
         self.audiobookInfoController?.viewIsReady()
     }
     
-    public func assembly() {
+    func assembly() {
         self.audiobookInfoController = AudiobookInfoController(view: self.rootVC.audioBookInfoView,
                                                               audiobook: self.audiobook)
         

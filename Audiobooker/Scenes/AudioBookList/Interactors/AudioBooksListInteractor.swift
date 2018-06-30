@@ -9,12 +9,15 @@
 import Foundation
 
 class AudioBooksListInteractor: IAudioBooksListInteractor {
-    let dataProvider: IAudioBookDataProvider = AudioBookDataProvider()
-    weak var output: IAudioBooksListView?
+    let dataProvider: IAudioBookDataProvider
     
-    func startLoadingBooks() {
-        dataProvider.loadListOfBooks { (books) in
-            self.output?.setBooks(books)
+    init(dataProvider: IAudioBookDataProvider) {
+        self.dataProvider = dataProvider
+    }
+    
+    func loadBooks(completion: @escaping ([AudioBook]) -> ()) {
+        self.dataProvider.loadListOfBooks { (books) in
+            completion(books)
         }
     }
 }
