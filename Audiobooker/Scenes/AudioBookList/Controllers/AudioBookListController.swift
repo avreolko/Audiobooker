@@ -1,50 +1,59 @@
 //
-//  ViewController.swift
+//  AudioBookListController.swift
 //  Audiobooker
 //
-//  Created by Valentin Cherepyanko on 03/06/2018.
+//  Created by Valentin Cherepyanko on 30/06/2018.
 //  Copyright © 2018 Valentin Cherepyanko. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class AudioBooksListViewController: DataViewController {
-    var interactor: IAudioBooksListInteractor = AudioBooksListInteractor()
+protocol AudioBookListControllerDelegate: AnyObject {
+    func select(book: AudioBook)
+}
+
+class AudioBookListController: NSObject {
     let audioBookCellReuseID = "audioBookCellReuseID"
-    var audioBooks: [AudioBook] = [AudioBook]()
     
-    @IBOutlet var tableView: UITableView!
+    private let view: AudioBookListView
+    private let interactor: AudioBooksListInteractor
+    private weak var delegate: AudioBookListControllerDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.interactor.output = self
+    private var audioBooks: [AudioBook] = [AudioBook]()
+    
+    init(view: AudioBookListView,
+         interactor: AudioBooksListInteractor,
+         delegate: AudioBookListControllerDelegate) {
+        
+        self.view = view
+        self.interactor = interactor
+        self.delegate = delegate
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.deselectRows()
-        self.interactor.startLoadingBooks()
-    }
-    
-    func deselectRows() {
-        if let index = self.tableView.indexPathForSelectedRow {
-            self.tableView.deselectRow(at: index, animated: true)
+}
+
+extension AudioBookListController: IController {
+    func viewIsReady() {
+        self.view.tableView.delegate = self
+        self.view.tableView.dataSource = self
+        
+        self.interactor.loadBooks { [weak self] (books) in
+            self?.showList(with: books)
         }
     }
 }
 
-extension AudioBooksListViewController: IAudioBooksListView {
-    func setBooks(_ books: [AudioBook]) {
+private extension AudioBookListController {
+    func showList(with books: [AudioBook]) {
         self.audioBooks = books
-        tableView?.reloadData()
+        
+        self.view.tableView.reloadData()
     }
 }
 
-extension AudioBooksListViewController: UITableViewDelegate, UITableViewDataSource {
+extension AudioBookListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return audioBooks.count
+        return self.audioBooks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,6 +77,6 @@ extension AudioBooksListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let audioBook = self.audioBooks[indexPath.row]
-        self.segue(VCSegue.selectAudioBook.rawValue, object: audioBook)
+        self.delegate?.select(book: audioBook)
     }
 }

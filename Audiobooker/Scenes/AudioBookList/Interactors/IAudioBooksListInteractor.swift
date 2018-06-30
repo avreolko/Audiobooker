@@ -9,6 +9,5 @@
 import Foundation
 
 protocol IAudioBooksListInteractor {
-    var output: IAudioBooksListView? { get set }
-    func startLoadingBooks()
+    func loadBooks(completion: @escaping ([AudioBook]) -> ())
 }
