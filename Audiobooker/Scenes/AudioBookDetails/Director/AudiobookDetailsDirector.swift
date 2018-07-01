@@ -14,6 +14,7 @@ protocol IDirector {
     associatedtype RootViewController: UIViewController
     func assembly()
     func viewIsReady()
+    func viewWillClose()
 }
 
 class AudiobookDetailsDirector: NSObject, IDirector {
@@ -38,11 +39,16 @@ class AudiobookDetailsDirector: NSObject, IDirector {
         self.progressHelper = progressHelper
     }
     
-    func viewIsReady() {
+    public func viewIsReady() {
         self.assembly()
         self.audioPlayerController?.viewIsReady()
         self.chapterListController?.viewIsReady()
         self.audiobookInfoController?.viewIsReady()
+    }
+    
+    public func viewWillClose() {
+        self.audioPlayerController?.stopPlaying()
+        self.saveProgress()
     }
     
     func assembly() {
@@ -56,7 +62,7 @@ class AudiobookDetailsDirector: NSObject, IDirector {
         
         self.audioPlayerController = AudioPlayerController(playerView: self.rootVC.playerView,
                                                           delegate: self,
-                                                          audioPlayer: AVPlayer())
+                                                          audioPlayer: AudioPlayer.shared)
     }
 }
 
@@ -96,10 +102,7 @@ extension AudiobookDetailsDirector: IChaptersListControllerDelegate {
     }
     
     func loaded(chapters: [Chapter]) {
-        if chapters.count > 0 {
-            let chapter = chapters[0]
-            self.audioPlayerController?.loadFile(url: chapter.audioFilePath)
-        }
+        try? self.restoreProgress(with: chapters)
     }
 }
 
@@ -114,21 +117,45 @@ extension AudiobookDetailsDirector: IAppStateListener {
 
 private extension AudiobookDetailsDirector {
     func saveProgress() {
-        guard
-            let selectedChapterIndex = self.chapterListController?.selectedChapterIndex,
-            let chapterURL = self.audioPlayerController?.fileURL,
-            let chapterProgress = self.audioPlayerController?.progress else {
-                
-                assertionFailure("Что-то пошло не так с сохранением прогресса")
-                return
+        guard let selectedChapterIndex = self.chapterListController?.selectedChapterIndex else {
+            assertionFailure("Что-то пошло не так с сохранением прогресса")
+            return
+        }
+        
+        guard let chapterURL = self.audioPlayerController?.fileURL else {
+            assertionFailure("Что-то пошло не так с сохранением прогресса")
+            return
+        }
+        
+        guard let chapterProgress = self.audioPlayerController?.progress else {
+            assertionFailure("Что-то пошло не так с сохранением прогресса")
+            return
         }
         
         let audioBookURL = self.audiobook.chaptersDirectoryPath
         
-        var audioBookProgress = self.progressHelper.getProgress(for: audioBookURL)
+        var audioBookProgress = self.progressHelper.getProgress(for: audioBookURL) ?? AudioBookProgress.empty
+        
         audioBookProgress.set(progress: chapterProgress, for: chapterURL)
         audioBookProgress.selectedChapterIndex = selectedChapterIndex
         
         self.progressHelper.save(progress: audioBookProgress, for: audioBookURL)
+    }
+    
+    func restoreProgress(with chapters: [Chapter]) throws {
+        let audioBookURL = self.audiobook.chaptersDirectoryPath
+        guard let progress = self.progressHelper.getProgress(for: audioBookURL) else {
+            throw NSError(domain: "There is no progress for this audio book.", code: 4, userInfo: nil)
+        }
+        
+        let index = progress.selectedChapterIndex
+        self.chapterListController?.select(chapterIndex: index)
+        
+        let chapter = chapters[index]
+        self.audioPlayerController?.loadFile(url: chapter.audioFilePath)
+        
+        if let chapterProgress = progress.progress(for: chapter.audioFilePath) {
+            self.audioPlayerController?.progress = chapterProgress
+        }
     }
 }

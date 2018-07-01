@@ -9,6 +9,5 @@
 import Foundation
 
 protocol IChapterListInteractor {
-    var output: IChaptersListInteractorOutput? { get set }
-    func startLoadingChapters()
+    func loadChapters(_ completion: @escaping ([Chapter]) -> () )
 }

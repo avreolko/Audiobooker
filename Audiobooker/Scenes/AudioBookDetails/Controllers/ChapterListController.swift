@@ -13,7 +13,7 @@ final class ChapterListController: NSObject, IController {
     
     private let chapterCellReuseID = "chapterCellReuseID"
     private var interactor: IChapterListInteractor
-    public var selectedChapterIndex: Int?
+    private(set) var selectedChapterIndex: Int?
     
     public var chapters: [Chapter] = [Chapter]()
     public weak var delegate: IChaptersListControllerDelegate?
@@ -27,33 +27,35 @@ final class ChapterListController: NSObject, IController {
         self.delegate = delegate
     }
     
-    func viewIsReady() {
+    public func viewIsReady() {
         self.view.tableView.delegate = self
         self.view.tableView.dataSource = self
         
-        self.interactor.output = self
-        self.interactor.startLoadingChapters()
+        self.loadData()
     }
     
-    deinit {
-        self.encode(state: self.state)
+    public func select(chapterIndex: Int) {
+        guard chapterIndex < (self.chapters.count - 1) else {
+            assertionFailure()
+            return
+        }
+        
+        self.selectedChapterIndex = chapterIndex
+        self.view.tableView.scrollToRow(at: IndexPath(row: chapterIndex, section: 0), at: .top, animated: true)
     }
 }
 
-extension ChapterListController: IChaptersListInteractorOutput {
-    func setChapters(chapters: [Chapter]) {
-        self.chapters = chapters
-        self.view.tableView.reloadData()
-        
-        self.delegate?.loaded(chapters: self.chapters)
-        self.restoreState()
-    }
-    
-    func loadingChaptersHasStarted() {
+private extension ChapterListController {
+    func loadData() {
         self.view.ac.startAnimating()
-    }
-    func loadingChaptersHasEnded() {
-        self.view.ac.stopAnimating()
+        
+        self.interactor.loadChapters { (chapters) in
+            self.view.ac.stopAnimating()
+            
+            self.chapters = chapters
+            self.view.tableView.reloadData()
+            self.delegate?.loaded(chapters: self.chapters)
+        }
     }
 }
 
@@ -87,28 +89,4 @@ extension ChapterListController: UITableViewDelegate, UITableViewDataSource {
         self.delegate?.select(chapter: chapter)
         self.view.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
-}
-
-extension ChapterListController: IStateable {
-    typealias State = ChapterListControllerState
-    
-    var state: State? {
-        guard let index = self.selectedChapterIndex else {
-            return nil
-        }
-        
-        return ChapterListControllerState(selectedChapterIndex:index)
-    }
-    
-    var key: String { return "audio player controller state" }
-    
-    func restore(with state: State) {
-        self.selectedChapterIndex = state.selectedChapterIndex
-        let indexPath = IndexPath(row: state.selectedChapterIndex, section: 0)
-        self.view.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-    }
-}
-
-struct ChapterListControllerState: Codable {
-    var selectedChapterIndex: Int
 }

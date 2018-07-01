@@ -32,6 +32,7 @@ class AudiobookDetailsRootController: DataViewController {
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
+        self.director?.viewWillClose()
         self.dismiss(animated: true, completion: nil)
     }
 }

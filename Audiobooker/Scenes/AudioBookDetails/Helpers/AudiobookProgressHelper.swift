@@ -19,11 +19,8 @@ class AudiobookProgressHelper {
         storage.save(progress, for: url.absoluteString)
     }
     
-    public func getProgress(for url: URL) -> AudioBookProgress {
-        guard let savedProgress: AudioBookProgress = storage.fetch(for: url.absoluteString) else {
-            return AudioBookProgress.empty
-        }
-        
+    public func getProgress(for url: URL) -> AudioBookProgress? {
+        let savedProgress: AudioBookProgress? = storage.fetch(for: url.absoluteString)
         return savedProgress
     }
 }

@@ -13,7 +13,6 @@
 		A70368D420C4083000A32029 /* UIViewDecoratorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D320C4083000A32029 /* UIViewDecoratorConfig.swift */; };
 		A70368D620C4163C00A32029 /* ChapterListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D520C4163C00A32029 /* ChapterListInteractor.swift */; };
 		A70368D820C4164E00A32029 /* IChapterListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D720C4164E00A32029 /* IChapterListInteractor.swift */; };
-		A70368DA20C4170300A32029 /* IChaptersListInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368D920C4170300A32029 /* IChaptersListInteractorOutput.swift */; };
 		A70368DC20C417B300A32029 /* AudiobookDetailsRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368DB20C417B300A32029 /* AudiobookDetailsRootController.swift */; };
 		A70368E020C4190500A32029 /* ChapterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368DF20C4190500A32029 /* ChapterCell.swift */; };
 		A70368E320C41AA000A32029 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70368E220C41AA000A32029 /* DataViewController.swift */; };
@@ -45,13 +44,16 @@
 		A7A36E3D20D808A50070ECB6 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3C20D808A50070ECB6 /* AudioPlayerController.swift */; };
 		A7A36E3F20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3E20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift */; };
 		A7A36E4120DA96080070ECB6 /* IStateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E4020DA96080070ECB6 /* IStateable.swift */; };
-		A7A36E4320DA96DB0070ECB6 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E4220DA96DB0070ECB6 /* Storage.swift */; };
+		A7A36E4320DA96DB0070ECB6 /* DefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E4220DA96DB0070ECB6 /* DefaultsStorage.swift */; };
 		A7A36E4B20DD2ECC0070ECB6 /* AudiobookDetailsDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E4A20DD2ECC0070ECB6 /* AudiobookDetailsDirector.swift */; };
 		A7C7776020C58C810081BBC5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C7775F20C58C810081BBC5 /* AVFoundation.framework */; };
 		A7C7777520CABDB40081BBC5 /* ChapterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777420CABDB40081BBC5 /* ChapterListController.swift */; };
 		A7C7777720CAC31B0081BBC5 /* IController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777620CAC31B0081BBC5 /* IController.swift */; };
 		A7C7777920CAC3420081BBC5 /* IInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777820CAC3420081BBC5 /* IInteractor.swift */; };
 		A7E34BB820E12DBD00D68C84 /* AudiobookProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */; };
+		A7E7A95920E7CBE000F55487 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */; };
+		A7E7A95B20E85DAB00F55487 /* AudioBookProgressHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */; };
+		A7E7A95E20E8711C00F55487 /* IStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95D20E8711C00F55487 /* IStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +86,6 @@
 		A70368D320C4083000A32029 /* UIViewDecoratorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDecoratorConfig.swift; sourceTree = "<group>"; };
 		A70368D520C4163C00A32029 /* ChapterListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListInteractor.swift; sourceTree = "<group>"; };
 		A70368D720C4164E00A32029 /* IChapterListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChapterListInteractor.swift; sourceTree = "<group>"; };
-		A70368D920C4170300A32029 /* IChaptersListInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChaptersListInteractorOutput.swift; sourceTree = "<group>"; };
 		A70368DB20C417B300A32029 /* AudiobookDetailsRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookDetailsRootController.swift; sourceTree = "<group>"; };
 		A70368DF20C4190500A32029 /* ChapterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCell.swift; sourceTree = "<group>"; };
 		A70368E220C41AA000A32029 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
@@ -120,13 +121,16 @@
 		A7A36E3C20D808A50070ECB6 /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
 		A7A36E3E20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChaptersListControllerDelegate.swift; sourceTree = "<group>"; };
 		A7A36E4020DA96080070ECB6 /* IStateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStateable.swift; sourceTree = "<group>"; };
-		A7A36E4220DA96DB0070ECB6 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		A7A36E4220DA96DB0070ECB6 /* DefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorage.swift; sourceTree = "<group>"; };
 		A7A36E4A20DD2ECC0070ECB6 /* AudiobookDetailsDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookDetailsDirector.swift; sourceTree = "<group>"; };
 		A7C7775F20C58C810081BBC5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A7C7777420CABDB40081BBC5 /* ChapterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListController.swift; sourceTree = "<group>"; };
 		A7C7777620CAC31B0081BBC5 /* IController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IController.swift; sourceTree = "<group>"; };
 		A7C7777820CAC3420081BBC5 /* IInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInteractor.swift; sourceTree = "<group>"; };
 		A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookProgressHelper.swift; sourceTree = "<group>"; };
+		A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookProgressHelperTest.swift; sourceTree = "<group>"; };
+		A7E7A95D20E8711C00F55487 /* IStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,10 +155,11 @@
 		A70368C720C4038400A32029 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A7E7A95C20E870F700F55487 /* Storage */,
 				A7995C6E20E773A2009D7D39 /* AppStateNotifier */,
 				A70368E720C5788F00A32029 /* IMP3TagReader.swift */,
 				A70368E920C579BE00A32029 /* MP3TagReader.swift */,
-				A7A36E4220DA96DB0070ECB6 /* Storage.swift */,
+				A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			children = (
 				A741F83420C3B9E6003E2B42 /* AudiobookerTests.swift */,
 				A741F83620C3B9E6003E2B42 /* Info.plist */,
+				A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */,
 			);
 			path = AudiobookerTests;
 			sourceTree = "<group>";
@@ -388,7 +394,6 @@
 		A7A36E4920DD2C550070ECB6 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
-				A70368D920C4170300A32029 /* IChaptersListInteractorOutput.swift */,
 				A70368D720C4164E00A32029 /* IChapterListInteractor.swift */,
 				A70368D520C4163C00A32029 /* ChapterListInteractor.swift */,
 			);
@@ -409,6 +414,15 @@
 				A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A7E7A95C20E870F700F55487 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				A7E7A95D20E8711C00F55487 /* IStorage.swift */,
+				A7A36E4220DA96DB0070ECB6 /* DefaultsStorage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,7 +545,6 @@
 				A741F84320C3BA56003E2B42 /* AudioBook.swift in Sources */,
 				A741F85420C3C488003E2B42 /* AudioBookCell.swift in Sources */,
 				A7A36E4120DA96080070ECB6 /* IStateable.swift in Sources */,
-				A70368DA20C4170300A32029 /* IChaptersListInteractorOutput.swift in Sources */,
 				A70368D620C4163C00A32029 /* ChapterListInteractor.swift in Sources */,
 				A741F82220C3B9E6003E2B42 /* AudioBookListRootController.swift in Sources */,
 				A7995C6920E761EE009D7D39 /* AudioBookProgress.swift in Sources */,
@@ -548,7 +561,9 @@
 				A70368D820C4164E00A32029 /* IChapterListInteractor.swift in Sources */,
 				A7995C6B20E76905009D7D39 /* AppStateNotifier.swift in Sources */,
 				A70368DC20C417B300A32029 /* AudiobookDetailsRootController.swift in Sources */,
-				A7A36E4320DA96DB0070ECB6 /* Storage.swift in Sources */,
+				A7E7A95920E7CBE000F55487 /* AudioPlayer.swift in Sources */,
+				A7A36E4320DA96DB0070ECB6 /* DefaultsStorage.swift in Sources */,
+				A7E7A95E20E8711C00F55487 /* IStorage.swift in Sources */,
 				A7A36E3B20D7FDDC0070ECB6 /* IPlayerView.swift in Sources */,
 				A70368E820C5788F00A32029 /* IMP3TagReader.swift in Sources */,
 				A7A36E3720D7F4E20070ECB6 /* ProgressBar.swift in Sources */,
@@ -567,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7E7A95B20E85DAB00F55487 /* AudioBookProgressHelperTest.swift in Sources */,
 				A741F83520C3B9E6003E2B42 /* AudiobookerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

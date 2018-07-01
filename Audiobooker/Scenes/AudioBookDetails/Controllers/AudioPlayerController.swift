@@ -11,39 +11,33 @@ import AVFoundation
 
 class AudioPlayerController: NSObject, IAudioPlayerController {
     private weak var playerView: (UIView & IPlayerView)!
-    private var audioPlayer: AVPlayer
+    private var audioPlayer: AudioPlayer
     private var paused = true
     private var asset: AVAsset?
-    private var audioBookProgress: AudioBookProgress?
-    
-    private var _progress: Float = 0
     
     weak var delegate: IAudioPlayerDelegate?
     
     required init(playerView: UIView & IPlayerView,
                   delegate: IAudioPlayerDelegate,
-                  audioPlayer: AVPlayer,
-                  audioBookProgress: AudioBookProgress? = nil) {
+                  audioPlayer: AudioPlayer) {
         self.playerView = playerView
         self.delegate = delegate
         self.audioPlayer = audioPlayer // TODO добавить абстракцию от AVPlayer
-        self.audioBookProgress = audioBookProgress
     }
     
     func viewIsReady() {
         UIViewDecorator.decorate(view: playerView, config: .player)
         
         self.playerView.delegate = self
-        let cmtime = CMTime(seconds: 0.2, preferredTimescale: Int32(44100))
-        self.audioPlayer.addPeriodicTimeObserver(forInterval: cmtime, queue: .main) { (time) in
-            self.checkProgress(cmtime: cmtime)
+        self.audioPlayer.progressClosures.append { [weak self] (progress) in
+            self?.progressChanged(to: progress)
         }
     }
     
     func loadFile(url: URL) {
         let asset = AVAsset(url: url)
         self.asset = asset
-        audioPlayer.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+        self.audioPlayer.loadFile(url: url)
         playerView.set(progress: 0, animated: false)
         
         let mp3TagContainer = MP3TagContainer(pathToMP3File: url)
@@ -56,26 +50,21 @@ class AudioPlayerController: NSObject, IAudioPlayerController {
         self.playerView?.paused = self.paused
     }
     
-    private func checkProgress(cmtime: CMTime) {
-        guard let currentItem = self.audioPlayer.currentItem else {
-            return
-        }
-        
-        let currentTime = currentItem.currentTime()
-        let duration = currentItem.duration
-
-        let playedSeconds = CMTimeGetSeconds(currentTime)
-        let durationSeconds = CMTimeGetSeconds(duration)
-
-        if playedSeconds >= 0, durationSeconds > 0 {
-            let progress: Float = Float(playedSeconds / durationSeconds)
-            self.playerView?.set(progress: progress)
-            _progress = progress
-        }
+    func stopPlaying() {
+        audioPlayer.pause()
+        self.paused = true
+        self.playerView?.paused = self.paused
     }
     
-    var progress: Float? {
-        return _progress
+    var progress: Float {
+        get {
+            print("progress: \(self.audioPlayer.progress)")
+            return self.audioPlayer.progress
+        }
+        set {
+            self.playerView.set(progress: newValue, animated: true)
+            self.audioPlayer.progress = newValue
+        }
     }
     
     var fileURL: URL? {
@@ -118,5 +107,11 @@ extension AudioPlayerController: IPlayerViewDelegate {
         if !paused {
             self.startPlaying()
         }
+    }
+}
+
+private extension AudioPlayerController {
+    func progressChanged(to progress: Float) {
+        self.playerView?.set(progress: progress)
     }
 }

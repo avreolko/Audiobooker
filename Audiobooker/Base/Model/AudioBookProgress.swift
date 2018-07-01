@@ -19,4 +19,8 @@ struct AudioBookProgress: Codable {
     static let empty = {
        return AudioBookProgress()
     }()
+    
+    func progress(for url: URL) -> Float? {
+        return chapters[url]
+    }
 }
