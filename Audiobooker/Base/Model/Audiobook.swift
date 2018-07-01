@@ -23,3 +23,9 @@ struct AudioBook {
         self.id = "kkkk"
     }
 }
+
+extension AudioBook: MD5Hashable {
+    var seed: String {
+        return self.title + self.author + self.id
+    }
+}

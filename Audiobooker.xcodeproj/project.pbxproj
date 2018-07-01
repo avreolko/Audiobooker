@@ -54,6 +54,8 @@
 		A7E7A95920E7CBE000F55487 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */; };
 		A7E7A95B20E85DAB00F55487 /* AudioBookProgressHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */; };
 		A7E7A95E20E8711C00F55487 /* IStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95D20E8711C00F55487 /* IStorage.swift */; };
+		A7E7A96020E87E1200F55487 /* StorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95F20E87E1200F55487 /* StorageTest.swift */; };
+		A7E7A96220E87F7F00F55487 /* MD5Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A96120E87F7F00F55487 /* MD5Hashable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookProgressHelperTest.swift; sourceTree = "<group>"; };
 		A7E7A95D20E8711C00F55487 /* IStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStorage.swift; sourceTree = "<group>"; };
+		A7E7A95F20E87E1200F55487 /* StorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTest.swift; sourceTree = "<group>"; };
+		A7E7A96120E87F7F00F55487 /* MD5Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5Hashable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +282,7 @@
 				A741F83420C3B9E6003E2B42 /* AudiobookerTests.swift */,
 				A741F83620C3B9E6003E2B42 /* Info.plist */,
 				A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */,
+				A7E7A95F20E87E1200F55487 /* StorageTest.swift */,
 			);
 			path = AudiobookerTests;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				A7C7777620CAC31B0081BBC5 /* IController.swift */,
 				A7C7777820CAC3420081BBC5 /* IInteractor.swift */,
 				A7A36E4020DA96080070ECB6 /* IStateable.swift */,
+				A7E7A96120E87F7F00F55487 /* MD5Hashable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 				A7995C6B20E76905009D7D39 /* AppStateNotifier.swift in Sources */,
 				A70368DC20C417B300A32029 /* AudiobookDetailsRootController.swift in Sources */,
 				A7E7A95920E7CBE000F55487 /* AudioPlayer.swift in Sources */,
+				A7E7A96220E87F7F00F55487 /* MD5Hashable.swift in Sources */,
 				A7A36E4320DA96DB0070ECB6 /* DefaultsStorage.swift in Sources */,
 				A7E7A95E20E8711C00F55487 /* IStorage.swift in Sources */,
 				A7A36E3B20D7FDDC0070ECB6 /* IPlayerView.swift in Sources */,
@@ -583,6 +590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7E7A95B20E85DAB00F55487 /* AudioBookProgressHelperTest.swift in Sources */,
+				A7E7A96020E87E1200F55487 /* StorageTest.swift in Sources */,
 				A741F83520C3B9E6003E2B42 /* AudiobookerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

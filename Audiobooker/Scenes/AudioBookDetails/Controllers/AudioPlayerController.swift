@@ -11,32 +11,30 @@ import AVFoundation
 
 class AudioPlayerController: NSObject, IAudioPlayerController {
     private weak var playerView: (UIView & IPlayerView)!
-    private var audioPlayer: AudioPlayer
+    private var audioPlayer: IAudioPlayer
     private var paused = true
-    private var asset: AVAsset?
     
     weak var delegate: IAudioPlayerDelegate?
     
     required init(playerView: UIView & IPlayerView,
                   delegate: IAudioPlayerDelegate,
-                  audioPlayer: AudioPlayer) {
+                  audioPlayer: IAudioPlayer) {
         self.playerView = playerView
         self.delegate = delegate
-        self.audioPlayer = audioPlayer // TODO добавить абстракцию от AVPlayer
+        self.audioPlayer = audioPlayer
     }
     
     func viewIsReady() {
         UIViewDecorator.decorate(view: playerView, config: .player)
         
         self.playerView.delegate = self
-        self.audioPlayer.progressClosures.append { [weak self] (progress) in
+        
+        self.audioPlayer.subscribeForProgress { [weak self] (progress) in
             self?.progressChanged(to: progress)
         }
     }
     
     func loadFile(url: URL) {
-        let asset = AVAsset(url: url)
-        self.asset = asset
         self.audioPlayer.loadFile(url: url)
         playerView.set(progress: 0, animated: false)
         
@@ -68,11 +66,7 @@ class AudioPlayerController: NSObject, IAudioPlayerController {
     }
     
     var fileURL: URL? {
-        guard let url = (self.asset as? AVURLAsset)?.url else {
-            return nil
-        }
-        
-        return url
+        return self.audioPlayer.loadedURL
     }
 }
 
@@ -84,10 +78,10 @@ extension AudioPlayerController: IPlayerViewDelegate {
     }
     
     func nextTapped() {
-        guard let url = (self.asset as? AVURLAsset)?.url,
-        let nextURL = self.delegate?.getNextFileURL(for: url) else {
-            assertionFailure()
-            return
+        guard   let url = self.audioPlayer.loadedURL,
+                let nextURL = self.delegate?.getNextFileURL(for: url) else {
+                    assertionFailure()
+                    return
         }
         
         self.loadFile(url: nextURL)
@@ -97,10 +91,10 @@ extension AudioPlayerController: IPlayerViewDelegate {
     }
     
     func previousTapped() {
-        guard let url = (self.asset as? AVURLAsset)?.url,
-            let previousURL = self.delegate?.getPreviousFileURL(for: url) else {
-                assertionFailure()
-                return
+        guard   let url = self.audioPlayer.loadedURL,
+                let previousURL = self.delegate?.getPreviousFileURL(for: url) else {
+                    assertionFailure()
+                    return
         }
         
         self.loadFile(url: previousURL)

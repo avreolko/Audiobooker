@@ -19,7 +19,6 @@ final class DefaultsStorage: IStorage {
         } else {
             userDefaults.set(object, forKey: key)
         }
-        userDefaults.
     }
     
     func fetch<T: Codable>(for key: String) -> T? {

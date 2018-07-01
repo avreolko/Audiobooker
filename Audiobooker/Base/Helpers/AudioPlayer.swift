@@ -10,10 +10,14 @@ import UIKit
 import AVFoundation
 
 protocol IAudioPlayer {
+    typealias ProgressClosure = (Float) -> ()
+    
     func loadFile(url: URL)
     func play()
     func pause()
+    var loadedURL: URL? { get }
     var progress: Float { get set }
+    func subscribeForProgress(closure: @escaping ProgressClosure)
 }
 
 protocol AudioPlayerDelegate: AnyObject {
@@ -21,13 +25,11 @@ protocol AudioPlayerDelegate: AnyObject {
 }
 
 class AudioPlayer {
-    static let shared: AudioPlayer = AudioPlayer()
+    static let shared: IAudioPlayer = AudioPlayer()
     
     private var player: AVAudioPlayer?
     public weak var delegate: AudioPlayerDelegate?
-    
-    typealias ProgressClosure = (Float) -> ()
-    public var progressClosures: [ProgressClosure] = [ProgressClosure]()
+    private var progressClosures: [ProgressClosure] = [ProgressClosure]()
     
     private let refreshTime = 0.2
     private var timer: Timer? = nil
@@ -75,6 +77,14 @@ extension AudioPlayer: IAudioPlayer {
             }
             player?.currentTime = TimeInterval(TimeInterval(newValue) * durationTime)
         }
+    }
+    
+    var loadedURL: URL? {
+        return self.player?.url
+    }
+    
+    func subscribeForProgress(closure: @escaping ProgressClosure) {
+        self.progressClosures.append(closure)
     }
 }
 

@@ -15,12 +15,12 @@ class AudiobookProgressHelper {
         self.storage = storage
     }
     
-    public func save(progress: AudioBookProgress, for url: URL) {
-        storage.save(progress, for: url.absoluteString)
+    public func save(progress: AudioBookProgress, for bookHash: String) {
+        storage.save(progress, for: bookHash)
     }
     
-    public func getProgress(for url: URL) -> AudioBookProgress? {
-        let savedProgress: AudioBookProgress? = storage.fetch(for: url.absoluteString)
+    public func getProgress(for bookHash: String) -> AudioBookProgress? {
+        let savedProgress: AudioBookProgress? = storage.fetch(for: bookHash)
         return savedProgress
     }
 }
