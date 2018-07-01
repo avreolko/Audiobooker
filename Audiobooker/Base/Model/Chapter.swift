@@ -24,3 +24,9 @@ struct Chapter {
         self.artist = mp3TagContainer.artist
     }
 }
+
+extension Chapter: MD5Hashable {
+    var seed: String {
+        return self.title + self.album + self.artist
+    }
+}

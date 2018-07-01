@@ -11,19 +11,15 @@ import Foundation
 final class ChapterListInteractor: IChapterListInteractor {
     let dataProvider: IAudioBookDataProvider = AudioBookDataProvider()
     
-    public weak var output: IChaptersListInteractorOutput?
-    
     private let audioBook: AudioBook
     
     init(audioBook: AudioBook) {
         self.audioBook = audioBook
     }
     
-    func startLoadingChapters() {
-        self.output?.loadingChaptersHasStarted()
+    func loadChapters(_ completion: @escaping ([Chapter]) -> () ) {
         self.dataProvider.loadChaptersOf(book: audioBook) { (chapters) in
-            self.output?.loadingChaptersHasEnded()
-            self.output?.setChapters(chapters: chapters)
+            completion(chapters)
         }
     }
 }

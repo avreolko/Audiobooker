@@ -39,6 +39,6 @@ class AudioBookCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        print("selected \(self.title.text!) - \(selected)")
+//        print("selected \(self.title.text!) - \(selected)")
     }
 }

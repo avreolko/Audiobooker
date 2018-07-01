@@ -15,19 +15,12 @@ class AudiobookProgressHelper {
         self.storage = storage
     }
     
-    func save(progress: AudioBookProgress, for url: URL) {
-        storage.save(progress, for: url.absoluteString)
+    public func save(progress: AudioBookProgress, for bookHash: String) {
+        storage.save(progress, for: bookHash)
     }
     
-    func getProgress(for url: URL) -> AudioBookProgress? {
-        return storage.fetch(for: url.absoluteString)
-    }
-}
-
-struct AudioBookProgress: Codable {
-    var chapters: [URL : Float] = [URL : Float]()
-    
-    mutating func set(progress: Float, for chapterURL: URL) {
-        self.chapters[chapterURL] = progress
+    public func getProgress(for bookHash: String) -> AudioBookProgress? {
+        let savedProgress: AudioBookProgress? = storage.fetch(for: bookHash)
+        return savedProgress
     }
 }

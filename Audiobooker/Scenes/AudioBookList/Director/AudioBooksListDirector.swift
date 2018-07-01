@@ -24,6 +24,8 @@ class AudioBooksListDirector: IDirector {
         self.audioBooksListController?.viewIsReady()
     }
     
+    public func viewWillClose() { }
+    
     public func assembly() {
         let dataProvider = AudioBookDataProvider()
         let interactor = AudioBooksListInteractor(dataProvider: dataProvider)

@@ -7,12 +7,6 @@
 //
 
 import UIKit
-public protocol IStorageKey: CodingKey { }
-
-public protocol IStorage: AnyObject {
-    func fetch<T: Codable>(for key: String) -> T?
-    func save<T: Codable>(_ data: T, for key: String)
-}
 
 final class DefaultsStorage: IStorage {
     func save<T: Codable>(_ object: T, for key: String) {

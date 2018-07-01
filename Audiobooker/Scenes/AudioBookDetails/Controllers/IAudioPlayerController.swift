@@ -15,8 +15,10 @@ protocol IAudioPlayerDelegate: AnyObject {
 }
 
 protocol IAudioPlayerController: IController {
-    var progress: Float { get }
+    var progress: Float { get set }
+    var fileURL: URL? { get }
     var delegate: IAudioPlayerDelegate? { get set }
     func loadFile(url: URL)
     func startPlaying()
+    func stopPlaying()
 }
