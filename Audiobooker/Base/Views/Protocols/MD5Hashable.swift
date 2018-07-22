@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CommonCrypto
 
 enum HasherError: Error {
     case seedError
@@ -21,26 +20,6 @@ protocol MD5Hashable {
 }
 
 extension MD5Hashable {
-//    func md5Hash() throws -> String  {
-//        guard let messageData = self.seed.data(using:.utf8) else {
-//            throw HasherError.seedError
-//        }
-//
-//        var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
-//
-//        _ = digestData.withUnsafeMutableBytes {digestBytes in
-//            messageData.withUnsafeBytes {messageBytes in
-//                CC_MD5(messageBytes, CC_LONG(messageData.count), digestBytes)
-//            }
-//        }
-//
-//        guard let hashString = String(data: digestData, encoding: .utf8) else {
-//            throw HasherError.hashError
-//        }
-//
-//        return hashString
-//    }
-    
     func md5Hash() throws -> String {
         let length = Int(CC_MD5_DIGEST_LENGTH)
         var digest = [UInt8](repeating: 0, count: length)

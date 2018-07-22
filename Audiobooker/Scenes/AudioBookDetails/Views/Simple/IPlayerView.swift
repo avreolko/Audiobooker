@@ -10,8 +10,11 @@ import Foundation
 
 protocol IPlayerViewDelegate: AnyObject {
     func playTapped()
+    
     func nextTapped()
     func previousTapped()
+    
+    func roll(seconds: Double)
 }
 
 protocol IPlayerView: AnyObject {
