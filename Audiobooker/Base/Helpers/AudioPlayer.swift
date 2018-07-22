@@ -17,7 +17,9 @@ protocol IAudioPlayer {
     func pause()
     var loadedURL: URL? { get }
     var progress: Float { get set }
+    func roll(seconds: Double)
     func subscribeForProgress(closure: @escaping ProgressClosure)
+    func configureBackgroundSession()
 }
 
 protocol AudioPlayerDelegate: AnyObject {
@@ -42,6 +44,8 @@ class AudioPlayer {
         })
     }
 }
+
+
 
 extension AudioPlayer: IAudioPlayer {
     func loadFile(url: URL) {
@@ -85,6 +89,21 @@ extension AudioPlayer: IAudioPlayer {
     
     func subscribeForProgress(closure: @escaping ProgressClosure) {
         self.progressClosures.append(closure)
+    }
+    
+    func configureBackgroundSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+            print("Playback OK")
+            try AVAudioSession.sharedInstance().setActive(true)
+            print("Session is Active")
+        } catch {
+            print(error)
+        }
+    }
+    
+    func roll(seconds: Double) {
+        player?.currentTime += seconds
     }
 }
 

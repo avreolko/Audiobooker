@@ -102,6 +102,10 @@ extension AudioPlayerController: IPlayerViewDelegate {
             self.startPlaying()
         }
     }
+    
+    func roll(seconds: Double) {
+        audioPlayer.roll(seconds: seconds)
+    }
 }
 
 private extension AudioPlayerController {

@@ -34,12 +34,12 @@
 		A771618820DD3F9E00ED552D /* AudiobookInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A771618720DD3F9E00ED552D /* AudiobookInfoController.swift */; };
 		A775C86120DF8A430003E9D7 /* ChapterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C86020DF8A430003E9D7 /* ChapterListView.swift */; };
 		A775C86320DF8B1E0003E9D7 /* AudiobookInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C86220DF8B1E0003E9D7 /* AudiobookInfoView.swift */; };
+		A788E7DC21046E09009C8F10 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788E7DB21046E09009C8F10 /* PlayerView.swift */; };
 		A7995C6920E761EE009D7D39 /* AudioBookProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7995C6820E761EE009D7D39 /* AudioBookProgress.swift */; };
 		A7995C6B20E76905009D7D39 /* AppStateNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7995C6A20E76905009D7D39 /* AppStateNotifier.swift */; };
 		A7995C6D20E77393009D7D39 /* IAppStateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7995C6C20E77393009D7D39 /* IAppStateListener.swift */; };
 		A7A36E3420D7F1490070ECB6 /* IAudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3320D7F1490070ECB6 /* IAudioPlayerController.swift */; };
 		A7A36E3720D7F4E20070ECB6 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3620D7F4E20070ECB6 /* ProgressBar.swift */; };
-		A7A36E3920D7F6910070ECB6 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3820D7F6910070ECB6 /* PlayerView.swift */; };
 		A7A36E3B20D7FDDC0070ECB6 /* IPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3A20D7FDDC0070ECB6 /* IPlayerView.swift */; };
 		A7A36E3D20D808A50070ECB6 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3C20D808A50070ECB6 /* AudioPlayerController.swift */; };
 		A7A36E3F20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36E3E20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift */; };
@@ -50,6 +50,7 @@
 		A7C7777520CABDB40081BBC5 /* ChapterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777420CABDB40081BBC5 /* ChapterListController.swift */; };
 		A7C7777720CAC31B0081BBC5 /* IController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777620CAC31B0081BBC5 /* IController.swift */; };
 		A7C7777920CAC3420081BBC5 /* IInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7777820CAC3420081BBC5 /* IInteractor.swift */; };
+		A7D84A6420EBC27D00B73218 /* IResizableShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D84A6320EBC27D00B73218 /* IResizableShape.swift */; };
 		A7E34BB820E12DBD00D68C84 /* AudiobookProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */; };
 		A7E7A95920E7CBE000F55487 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */; };
 		A7E7A95B20E85DAB00F55487 /* AudioBookProgressHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */; };
@@ -113,12 +114,13 @@
 		A771618720DD3F9E00ED552D /* AudiobookInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookInfoController.swift; sourceTree = "<group>"; };
 		A775C86020DF8A430003E9D7 /* ChapterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListView.swift; sourceTree = "<group>"; };
 		A775C86220DF8B1E0003E9D7 /* AudiobookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookInfoView.swift; sourceTree = "<group>"; };
+		A788E7D721046CD4009C8F10 /* Audiobooker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Audiobooker-Bridging-Header.h"; sourceTree = "<group>"; };
+		A788E7DB21046E09009C8F10 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerView.swift; path = Audiobooker/Scenes/AudiobookDetails/Views/Simple/PlayerView.swift; sourceTree = SOURCE_ROOT; };
 		A7995C6820E761EE009D7D39 /* AudioBookProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookProgress.swift; sourceTree = "<group>"; };
 		A7995C6A20E76905009D7D39 /* AppStateNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateNotifier.swift; sourceTree = "<group>"; };
 		A7995C6C20E77393009D7D39 /* IAppStateListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAppStateListener.swift; sourceTree = "<group>"; };
 		A7A36E3320D7F1490070ECB6 /* IAudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAudioPlayerController.swift; sourceTree = "<group>"; };
 		A7A36E3620D7F4E20070ECB6 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
-		A7A36E3820D7F6910070ECB6 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		A7A36E3A20D7FDDC0070ECB6 /* IPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPlayerView.swift; sourceTree = "<group>"; };
 		A7A36E3C20D808A50070ECB6 /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
 		A7A36E3E20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChaptersListControllerDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		A7C7777420CABDB40081BBC5 /* ChapterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListController.swift; sourceTree = "<group>"; };
 		A7C7777620CAC31B0081BBC5 /* IController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IController.swift; sourceTree = "<group>"; };
 		A7C7777820CAC3420081BBC5 /* IInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInteractor.swift; sourceTree = "<group>"; };
+		A7D84A6320EBC27D00B73218 /* IResizableShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IResizableShape.swift; sourceTree = "<group>"; };
 		A7E34BB720E12DBD00D68C84 /* AudiobookProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookProgressHelper.swift; sourceTree = "<group>"; };
 		A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		A7E7A95A20E85DAB00F55487 /* AudioBookProgressHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookProgressHelperTest.swift; sourceTree = "<group>"; };
@@ -164,6 +167,7 @@
 				A70368E720C5788F00A32029 /* IMP3TagReader.swift */,
 				A70368E920C579BE00A32029 /* MP3TagReader.swift */,
 				A7E7A95820E7CBE000F55487 /* AudioPlayer.swift */,
+				A7D84A6320EBC27D00B73218 /* IResizableShape.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -252,6 +256,7 @@
 				A741F83320C3B9E6003E2B42 /* AudiobookerTests */,
 				A741F81D20C3B9E6003E2B42 /* Products */,
 				A7C7775E20C58C810081BBC5 /* Frameworks */,
+				A788E7D721046CD4009C8F10 /* Audiobooker-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -337,8 +342,8 @@
 		A7A36E3520D7F47D0070ECB6 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
+				A788E7DB21046E09009C8F10 /* PlayerView.swift */,
 				A7A36E3A20D7FDDC0070ECB6 /* IPlayerView.swift */,
-				A7A36E3820D7F6910070ECB6 /* PlayerView.swift */,
 				A7A36E3620D7F4E20070ECB6 /* ProgressBar.swift */,
 			);
 			path = Simple;
@@ -482,6 +487,7 @@
 				TargetAttributes = {
 					A741F81B20C3B9E6003E2B42 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -556,6 +562,7 @@
 				A7995C6920E761EE009D7D39 /* AudioBookProgress.swift in Sources */,
 				A7A36E3F20D80C3C0070ECB6 /* IChaptersListControllerDelegate.swift in Sources */,
 				A70368D420C4083000A32029 /* UIViewDecoratorConfig.swift in Sources */,
+				A7D84A6420EBC27D00B73218 /* IResizableShape.swift in Sources */,
 				A70E562420E74D6E00FB22E8 /* AudioBookListController.swift in Sources */,
 				A70368E320C41AA000A32029 /* DataViewController.swift in Sources */,
 				A775C86120DF8A430003E9D7 /* ChapterListView.swift in Sources */,
@@ -574,13 +581,13 @@
 				A7A36E3B20D7FDDC0070ECB6 /* IPlayerView.swift in Sources */,
 				A70368E820C5788F00A32029 /* IMP3TagReader.swift in Sources */,
 				A7A36E3720D7F4E20070ECB6 /* ProgressBar.swift in Sources */,
-				A7A36E3920D7F6910070ECB6 /* PlayerView.swift in Sources */,
 				A7E34BB820E12DBD00D68C84 /* AudiobookProgressHelper.swift in Sources */,
 				A7C7777520CABDB40081BBC5 /* ChapterListController.swift in Sources */,
 				A7995C6D20E77393009D7D39 /* IAppStateListener.swift in Sources */,
 				A70368EA20C579BE00A32029 /* MP3TagReader.swift in Sources */,
 				A7C7777920CAC3420081BBC5 /* IInteractor.swift in Sources */,
 				A70368C620C3D38700A32029 /* Chapter.swift in Sources */,
+				A788E7DC21046E09009C8F10 /* PlayerView.swift in Sources */,
 				A7A36E3D20D808A50070ECB6 /* AudioPlayerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,6 +743,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9AV4FW597T;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -746,6 +754,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ATSibDev.Audiobooker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Audiobooker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -755,6 +765,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9AV4FW597T;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -765,6 +776,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ATSibDev.Audiobooker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Audiobooker-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

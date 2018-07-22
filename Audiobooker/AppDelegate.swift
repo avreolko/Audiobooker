@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         AppStateNotifier.shared.appChangedState(to: .active)
+        AudioPlayer.shared.configureBackgroundSession()
         
         return true
     }

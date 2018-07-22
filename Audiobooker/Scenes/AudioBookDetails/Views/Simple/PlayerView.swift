@@ -44,6 +44,14 @@ class PlayerView: UIView, IPlayerView {
         delegate?.previousTapped()
     }
     
+    @IBAction func back30SecondsTapped(_ sender: Any) {
+        delegate?.roll(seconds: -30)
+    }
+    
+    @IBAction func forward30SecondsTapped(_ sender: Any) {
+        delegate?.roll(seconds: 30)
+    }
+    
     func set(title: String) {
         self.titleLabel.text = title
     }
