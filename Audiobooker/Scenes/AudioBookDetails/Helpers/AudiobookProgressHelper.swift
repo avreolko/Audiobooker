@@ -8,7 +8,8 @@
 
 import Foundation
 
-class AudiobookProgressHelper {
+class AudiobookProgressHelper
+{
     private let storage: IStorage
     
     init(storage: IStorage) {

@@ -10,11 +10,29 @@ import UIKit
 import AVFoundation
 
 class AudioPlayerController: NSObject, IAudioPlayerController {
+    var progress: Float {
+        get {
+            print("progress: \(self.audioPlayer.progress)")
+            return self.audioPlayer.progress
+        }
+        set {
+            self.playerView.set(progress: newValue, animated: true)
+            self.audioPlayer.progress = newValue
+        }
+    }
+
+    var fileURL: URL? {
+        return self.audioPlayer.loadedURL
+    }
+
+
     private weak var playerView: (UIView & IPlayerView)!
+
+    private weak var delegate: IAudioPlayerDelegate?
+
     private var audioPlayer: IAudioPlayer
+
     private var paused = true
-    
-    weak var delegate: IAudioPlayerDelegate?
     
     required init(playerView: UIView & IPlayerView,
                   delegate: IAudioPlayerDelegate,
@@ -52,21 +70,6 @@ class AudioPlayerController: NSObject, IAudioPlayerController {
         audioPlayer.pause()
         self.paused = true
         self.playerView?.paused = self.paused
-    }
-    
-    var progress: Float {
-        get {
-            print("progress: \(self.audioPlayer.progress)")
-            return self.audioPlayer.progress
-        }
-        set {
-            self.playerView.set(progress: newValue, animated: true)
-            self.audioPlayer.progress = newValue
-        }
-    }
-    
-    var fileURL: URL? {
-        return self.audioPlayer.loadedURL
     }
 }
 

@@ -19,7 +19,6 @@ protocol IAudioPlayer {
     var progress: Float { get set }
     func roll(seconds: Double)
     func subscribeForProgress(closure: @escaping ProgressClosure)
-    func configureBackgroundSession()
 }
 
 protocol AudioPlayerDelegate: AnyObject {
@@ -27,13 +26,14 @@ protocol AudioPlayerDelegate: AnyObject {
 }
 
 class AudioPlayer {
-    static let shared: IAudioPlayer = AudioPlayer()
-    
-    private var player: AVAudioPlayer?
+    static let shared: AudioPlayer = AudioPlayer()
+
+
     public weak var delegate: AudioPlayerDelegate?
-    private var progressClosures: [ProgressClosure] = [ProgressClosure]()
-    
+
     private let refreshTime = 0.2
+    private var player: AVAudioPlayer?
+    private var progressClosures = [ProgressClosure]()
     private var timer: Timer? = nil
     
     init() {
@@ -55,7 +55,7 @@ extension AudioPlayer: IAudioPlayer {
             assertionFailure(error.localizedDescription)
         }
     }
-    
+
     func play() {
         player?.play()
     }
