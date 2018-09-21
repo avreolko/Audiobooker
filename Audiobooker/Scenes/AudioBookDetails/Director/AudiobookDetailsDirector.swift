@@ -31,8 +31,8 @@ class AudiobookDetailsDirector: NSObject, IDirector {
     private var audiobook: AudioBook
     
     public init(rootViewController: RootViewController,
-                            audiobook: AudioBook,
-                            progressHelper: AudiobookProgressHelper) {
+                audiobook: AudioBook,
+                progressHelper: AudiobookProgressHelper) {
         
         self.rootVC = rootViewController
         self.audiobook = audiobook
@@ -53,7 +53,7 @@ class AudiobookDetailsDirector: NSObject, IDirector {
     
     func assembly() {
         self.audiobookInfoController = AudiobookInfoController(view: self.rootVC.audioBookInfoView,
-                                                              audiobook: self.audiobook)
+                                                               audiobook: self.audiobook)
         
         let interactor = ChapterListInteractor(audioBook: self.audiobook)
         self.chapterListController = ChapterListController(view: self.rootVC.chapterListView,
@@ -61,8 +61,8 @@ class AudiobookDetailsDirector: NSObject, IDirector {
                                                            delegate: self)
         
         self.audioPlayerController = AudioPlayerController(playerView: self.rootVC.playerView,
-                                                          delegate: self,
-                                                          audioPlayer: AudioPlayer.shared)
+                                                           delegate: self,
+                                                           audioPlayer: AudioPlayer.shared)
     }
 }
 
@@ -115,17 +115,18 @@ extension AudiobookDetailsDirector: IAppStateListener {
     }
 }
 
-private extension AudiobookDetailsDirector {
+private extension AudiobookDetailsDirector
+{
     // TODO дичь, переписать
     func saveProgress() {
         guard let selectedChapterIndex = self.chapterListController?.selectedChapterIndex else {
-            assertionFailure("Что-то пошло не так с сохранением прогресса")
+            assertionFailure("Не получилось взять индекс последней слушанной главы")
             return
         }
         
         guard   let chapter =  self.chapterListController?.chapters[selectedChapterIndex],
                 let chapterHash = try? chapter.md5Hash() else {
-                    assertionFailure("Что-то пошло не так с сохранением прогресса")
+                    assertionFailure("Не получилось взять хэш главы для сохранения прогресса")
                     return
         }
         
@@ -148,16 +149,18 @@ private extension AudiobookDetailsDirector {
     }
     
     func restoreProgress(with chapters: [Chapter]) throws {
+
         guard let hash = try? self.audiobook.md5Hash() else {
             assertionFailure()
             return
         }
+
         guard let progress = self.progressHelper.getProgress(for: hash) else {
-            throw NSError(domain: "There is no progress for this audio book.", code: 4, userInfo: nil)
+            throw NSError(domain: "Сорян, прогресса для этой книги нет.", code: 4, userInfo: nil)
         }
         
         let index = progress.selectedChapterIndex
-        self.chapterListController?.select(chapterIndex: index)
+        self.chapterListController?.select(chapter: index)
         
         let chapter = chapters[index]
         self.audioPlayerController?.loadFile(url: chapter.audioFilePath)

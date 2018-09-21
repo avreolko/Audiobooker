@@ -9,14 +9,19 @@
 import UIKit
 
 final class ChapterListController: NSObject, IController {
-    private weak var view: ChapterListView!
+
+    public var selectedChapterIndex: Int = 0
     
-    private let chapterCellReuseID = "chapterCellReuseID"
-    private var interactor: IChapterListInteractor
-    private(set) var selectedChapterIndex: Int?
-    
-    public var chapters: [Chapter] = [Chapter]()
     public weak var delegate: IChaptersListControllerDelegate?
+
+    public var chapters: [Chapter] = [Chapter]()
+
+    private weak var view: ChapterListView!
+
+    private var interactor: IChapterListInteractor
+
+    private let chapterCellReuseID = "chapterCellReuseID"
+
     
     init(view: ChapterListView,
          interactor: IChapterListInteractor,
@@ -34,14 +39,15 @@ final class ChapterListController: NSObject, IController {
         self.loadData()
     }
     
-    public func select(chapterIndex: Int) {
-        guard chapterIndex < (self.chapters.count - 1) else {
+    public func select(chapter chapterRowIndex: Int) {
+        guard chapterRowIndex < (self.chapters.count - 1) else {
             assertionFailure()
             return
         }
-        
-        self.selectedChapterIndex = chapterIndex
-        self.view.tableView.scrollToRow(at: IndexPath(row: chapterIndex, section: 0), at: .top, animated: true)
+
+        self.selectedChapterIndex = chapterRowIndex
+
+        self.view.tableView.scrollToRow(at: IndexPath(row: chapterRowIndex, section: 0), at: .top, animated: true)
     }
 }
 
@@ -83,10 +89,9 @@ extension ChapterListController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedChapterIndex = indexPath.row
-        
         let chapter = self.chapters[indexPath.row]
         self.delegate?.select(chapter: chapter)
+        self.selectedChapterIndex = indexPath.row
         self.view.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
