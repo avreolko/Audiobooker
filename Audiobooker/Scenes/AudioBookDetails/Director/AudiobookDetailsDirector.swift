@@ -10,14 +10,16 @@ import Foundation
 import UIKit
 import AVFoundation
 
-protocol IDirector {
+protocol IDirector
+{
     associatedtype RootViewController: UIViewController
     func assembly()
     func viewIsReady()
     func viewWillClose()
 }
 
-class AudiobookDetailsDirector: NSObject, IDirector {
+class AudiobookDetailsDirector: NSObject, IDirector
+{
     typealias RootViewController = AudiobookDetailsRootController
     
     private var progressHelper: AudiobookProgressHelper
@@ -55,7 +57,7 @@ class AudiobookDetailsDirector: NSObject, IDirector {
         self.audiobookInfoController = AudiobookInfoController(view: self.rootVC.audioBookInfoView,
                                                                audiobook: self.audiobook)
         
-        let interactor = ChapterListInteractor(audioBook: self.audiobook)
+        let interactor = ChapterListInteractor(audioBook: self.audiobook, audiobookProgressHelper: progressHelper)
         self.chapterListController = ChapterListController(view: self.rootVC.chapterListView,
                                                            interactor: interactor,
                                                            delegate: self)
@@ -66,7 +68,8 @@ class AudiobookDetailsDirector: NSObject, IDirector {
     }
 }
 
-extension AudiobookDetailsDirector: IAudioPlayerDelegate {
+extension AudiobookDetailsDirector: IAudioPlayerDelegate
+{
     func getNextFileURL(for url: URL) -> URL? {
         return self.fileURL(for: url, indexShift: 1)
     }
@@ -95,7 +98,8 @@ extension AudiobookDetailsDirector: IAudioPlayerDelegate {
     }
 }
 
-extension AudiobookDetailsDirector: IChaptersListControllerDelegate {
+extension AudiobookDetailsDirector: IChaptersListControllerDelegate
+{
     func select(chapter: Chapter) {
         self.audioPlayerController?.loadFile(url: chapter.audioFilePath)
         self.audioPlayerController?.startPlaying()
@@ -106,7 +110,8 @@ extension AudiobookDetailsDirector: IChaptersListControllerDelegate {
     }
 }
 
-extension AudiobookDetailsDirector: IAppStateListener {
+extension AudiobookDetailsDirector: IAppStateListener
+{
     func appBecomeActive() { }
     func appBecomeUnknown() { }
     
@@ -124,50 +129,40 @@ private extension AudiobookDetailsDirector
             return
         }
         
-        guard   let chapter =  self.chapterListController?.chapters[selectedChapterIndex],
-                let chapterHash = try? chapter.md5Hash() else {
-                    assertionFailure("Не получилось взять хэш главы для сохранения прогресса")
-                    return
+        guard let chapter =  self.chapterListController?.chapters[selectedChapterIndex] else {
+            assertionFailure("Не получилось взять хэш главы для сохранения прогресса")
+            return
         }
         
-        guard let chapterProgress = self.audioPlayerController?.progress else {
+        guard let audiofileProgress = self.audioPlayerController?.progress else {
             assertionFailure("Что-то пошло не так с сохранением прогресса")
             return
         }
+
+        let chapterProgress = ChapterProgress(progress: audiofileProgress, done: audiofileProgress >= 0.99)
         
-        guard let hash = try? self.audiobook.md5Hash() else {
-            assertionFailure()
-            return
-        }
-        
-        var audioBookProgress = self.progressHelper.getProgress(for: hash) ?? AudioBookProgress.empty
-        
-        audioBookProgress.set(progress: chapterProgress, for: chapterHash)
+        var audioBookProgress = self.progressHelper.getProgress(for: self.audiobook.md5Hash) ?? AudioBookProgress.empty
+        audioBookProgress.chaptersProgresses[chapter.md5Hash] = chapterProgress
         audioBookProgress.selectedChapterIndex = selectedChapterIndex
         
-        self.progressHelper.save(progress: audioBookProgress, for: hash)
+        self.progressHelper.save(audiobookProgress: audioBookProgress, for: self.audiobook.md5Hash)
     }
     
     func restoreProgress(with chapters: [Chapter]) throws {
 
-        guard let hash = try? self.audiobook.md5Hash() else {
-            assertionFailure()
-            return
-        }
+        let hash = self.audiobook.md5Hash
 
-        guard let progress = self.progressHelper.getProgress(for: hash) else {
+        guard let audibookProgress = self.progressHelper.getProgress(for: hash) else {
             throw NSError(domain: "Сорян, прогресса для этой книги нет.", code: 4, userInfo: nil)
         }
+
+        self.chapterListController?.select(chapter: audibookProgress.selectedChapterIndex)
         
-        let index = progress.selectedChapterIndex
-        self.chapterListController?.select(chapter: index)
-        
-        let chapter = chapters[index]
+        let chapter = chapters[audibookProgress.selectedChapterIndex]
         self.audioPlayerController?.loadFile(url: chapter.audioFilePath)
         
-        if  let hash = try? chapter.md5Hash(),
-            let chapterProgress = progress.progress(for: hash) {
-                self.audioPlayerController?.progress = chapterProgress
+        if let chapterProgress = audibookProgress.chaptersProgresses[chapter.md5Hash] {
+                self.audioPlayerController?.progress = chapterProgress.progress
         }
     }
 }

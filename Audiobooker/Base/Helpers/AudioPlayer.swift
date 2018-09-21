@@ -93,12 +93,13 @@ extension AudioPlayer: IAudioPlayer {
     
     func configureBackgroundSession() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             print("Playback OK")
             try AVAudioSession.sharedInstance().setActive(true)
             print("Session is Active")
         } catch {
             print(error)
+            assertionFailure()
         }
     }
     

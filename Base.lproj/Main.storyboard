@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -159,9 +158,19 @@
                                                     <action selector="closeButtonTapped:" destination="Kpe-w7-tGm" eventType="touchUpInside" id="jvn-ZI-9AY"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nW-VH-d5P">
+                                                <rect key="frame" x="0.0" y="182" width="359" height="2"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="Pqq-bN-Ekx"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="4nW-VH-d5P" firstAttribute="leading" secondItem="TMQ-c0-n7g" secondAttribute="leading" id="0Qs-9l-RVe"/>
+                                            <constraint firstAttribute="trailing" secondItem="4nW-VH-d5P" secondAttribute="trailing" id="3S0-Qp-AHT"/>
+                                            <constraint firstAttribute="bottom" secondItem="4nW-VH-d5P" secondAttribute="bottom" id="CIZ-Qh-Ji6"/>
                                             <constraint firstItem="Hdm-xV-s3q" firstAttribute="leading" secondItem="uvW-RF-5j2" secondAttribute="trailing" constant="12" id="Oq6-lj-5Yn"/>
                                             <constraint firstAttribute="trailing" secondItem="Rm6-tf-K3S" secondAttribute="trailing" constant="8" id="Q5K-9s-bRv"/>
                                             <constraint firstItem="uvW-RF-5j2" firstAttribute="leading" secondItem="TMQ-c0-n7g" secondAttribute="leading" constant="12" id="ZZD-WY-4Z5"/>
@@ -187,7 +196,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="359"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="separatorColor" red="0.90588235289999997" green="0.93725490199999995" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <inset key="separatorInset" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="chapterCellReuseID" id="JXu-UI-4dV" userLabel="Chapter Cell" customClass="ChapterCell" customModule="Audiobooker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="359" height="44"/>

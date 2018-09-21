@@ -8,13 +8,15 @@
 
 import UIKit
 
-protocol MD5Hashable {
+protocol MD5Hashable
+{
     var seed: String { get }
-    func md5Hash() throws -> String
+    var md5Hash: String { get }
 }
 
-extension MD5Hashable {
-    func md5Hash() throws -> String {
+extension MD5Hashable
+{
+    var md5Hash: String {
         let length = Int(CC_MD5_DIGEST_LENGTH)
         var digest = [UInt8](repeating: 0, count: length)
         

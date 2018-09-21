@@ -8,20 +8,19 @@
 
 import UIKit
 
-struct AudioBookProgress: Codable {
+struct AudioBookProgress: Codable
+{
     typealias ChapterHash = String
-    var chapters: [ChapterHash : Float] = [ChapterHash : Float]()
+    var chaptersProgresses: [ChapterHash : ChapterProgress] = [ChapterHash : ChapterProgress]()
     var selectedChapterIndex: Int = 0
-    
-    mutating func set(progress: Float, for chapterHash: ChapterHash) {
-        self.chapters[chapterHash] = progress
-    }
     
     static let empty = {
        return AudioBookProgress()
     }()
-    
-    func progress(for chapterHash: ChapterHash) -> Float? {
-        return chapters[chapterHash]
-    }
+}
+
+struct ChapterProgress: Codable
+{
+    let progress: Float
+    let done: Bool
 }

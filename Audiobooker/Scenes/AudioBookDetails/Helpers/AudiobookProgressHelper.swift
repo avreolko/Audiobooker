@@ -16,8 +16,8 @@ class AudiobookProgressHelper
         self.storage = storage
     }
     
-    public func save(progress: AudioBookProgress, for bookHash: String) {
-        storage.save(progress, for: bookHash)
+    public func save(audiobookProgress: AudioBookProgress, for bookHash: String) {
+        storage.save(audiobookProgress, for: bookHash)
     }
     
     public func getProgress(for bookHash: String) -> AudioBookProgress? {

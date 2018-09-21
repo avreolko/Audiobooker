@@ -12,14 +12,29 @@ final class ChapterListInteractor: IChapterListInteractor {
     let dataProvider: IAudioBookDataProvider = AudioBookDataProvider()
     
     private let audioBook: AudioBook
+    private let audiobookProgressHelper: AudiobookProgressHelper
     
-    init(audioBook: AudioBook) {
+    init(audioBook: AudioBook, audiobookProgressHelper: AudiobookProgressHelper) {
         self.audioBook = audioBook
+        self.audiobookProgressHelper = audiobookProgressHelper
     }
     
     func loadChapters(_ completion: @escaping ([Chapter]) -> () ) {
         self.dataProvider.loadChaptersOf(book: audioBook) { (chapters) in
-            completion(chapters)
+            let chaptersWithProgress = self.loadProgress(for: chapters)
+            completion(chaptersWithProgress)
+        }
+    }
+
+    func loadProgress(for chapters: [Chapter]) -> [Chapter] {
+        guard let audibookProgress = audiobookProgressHelper.getProgress(for: audioBook.md5Hash) else {
+            print("[ChapterListInteractor] для этой книги отсутствует прогресс, продолжаю без него")
+            return chapters
+        }
+
+        return chapters.map { (chapter) -> Chapter in
+            let chapterProgress = audibookProgress.chaptersProgresses[chapter.md5Hash]
+            return Chapter(progress: chapterProgress, otherChapter: chapter)
         }
     }
 }

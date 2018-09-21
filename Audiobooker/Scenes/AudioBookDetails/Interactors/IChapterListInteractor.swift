@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol IChapterListInteractor {
+protocol IChapterListInteractor
+{
     func loadChapters(_ completion: @escaping ([Chapter]) -> () )
 }

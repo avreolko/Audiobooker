@@ -8,8 +8,9 @@
 
 import Foundation
 
-struct Chapter {
-    let progress: Double = 0 // 0-1
+struct Chapter
+{
+    var progress: ChapterProgress? = nil
     let audioFilePath: URL
     let title: String
     let album: String
@@ -23,9 +24,23 @@ struct Chapter {
         self.album = mp3TagContainer.album
         self.artist = mp3TagContainer.artist
     }
+
+    init(progress: ChapterProgress?, otherChapter: Chapter) {
+
+        self.progress = progress
+        self.audioFilePath = otherChapter.audioFilePath
+        self.title = otherChapter.title
+        self.album = otherChapter.album
+        self.artist = otherChapter.artist
+    }
+
+    mutating func set(progress: ChapterProgress?) {
+        self.progress = progress
+    }
 }
 
-extension Chapter: MD5Hashable {
+extension Chapter: MD5Hashable
+{
     var seed: String {
         return self.title + self.album + self.artist
     }

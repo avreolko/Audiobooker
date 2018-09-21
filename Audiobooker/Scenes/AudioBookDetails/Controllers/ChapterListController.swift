@@ -80,7 +80,7 @@ extension ChapterListController: UITableViewDelegate, UITableViewDataSource {
         if let chapterCell = cell as? ChapterCell {
             let chapter = self.chapters[indexPath.row]
             chapterCell.title.text = chapter.title
-            chapterCell.progress.text = "\(chapter.progress)"
+            chapterCell.progress.text = "\(chapter.progress?.progress ?? 0)"
         }
     }
     
