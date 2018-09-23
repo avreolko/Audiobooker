@@ -16,16 +16,16 @@ public enum VCSegue: String {
 class DataViewController: UIViewController {
     var segueObjects : NSMutableDictionary = NSMutableDictionary()
 
+    var data: Any?
+
     // segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let toViewController = segue.destination as? DataViewController {
-            toViewController.passData(segueObjects.object(forKey: segue.identifier!))
-            segueObjects.removeObject(forKey: segue.identifier!)
+        if let toViewController = segue.destination as? DataViewController,
+            let segueID = segue.identifier {
+
+            toViewController.data = segueObjects.object(forKey: segueID)
+            segueObjects.removeObject(forKey: segueID)
         }
-    }
-    
-    func passData(_ object: Any?) {
-        
     }
     
     func segue(_ segue: String) {

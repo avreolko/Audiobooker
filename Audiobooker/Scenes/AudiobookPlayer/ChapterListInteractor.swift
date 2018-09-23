@@ -8,7 +8,13 @@
 
 import Foundation
 
-final class ChapterListInteractor: IChapterListInteractor {
+protocol IChapterListInteractor
+{
+    func loadChapters(_ completion: @escaping ([Chapter]) -> () )
+}
+
+final class ChapterListInteractor: IChapterListInteractor
+{
     let dataProvider: IAudioBookDataProvider = AudioBookDataProvider()
     
     private let audioBook: AudioBook

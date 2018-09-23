@@ -8,13 +8,14 @@
 
 import Foundation
 
-protocol IAudioBookDataProvider {
+protocol IAudioBookDataProvider
+{
     func loadListOfBooks(completion: @escaping ([AudioBook]) -> ())
     func loadChaptersOf(book: AudioBook, completion: @escaping ([Chapter]) -> ())
 }
 
-class AudioBookDataProvider: IAudioBookDataProvider {
-    
+class AudioBookDataProvider: IAudioBookDataProvider
+{
     private let fileManager = FileManager.default
     
     func loadListOfBooks(completion: @escaping ([AudioBook]) -> ()) {

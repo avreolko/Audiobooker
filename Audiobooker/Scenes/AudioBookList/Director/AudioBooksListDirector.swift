@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AudioBooksListDirector: IDirector {
+class AudioBooksListDirector: IDirector
+{
     typealias RootViewController = AudioBookListRootController
     
     private unowned var rootVC: RootViewController

@@ -16,8 +16,8 @@ protocol IStateable: AnyObject {
     func restore(with state: State)
 }
 
-extension IStateable {
-    
+extension IStateable
+{
     // default implementation
     func restoreState() {
         if let state: State = self.decodeState() {

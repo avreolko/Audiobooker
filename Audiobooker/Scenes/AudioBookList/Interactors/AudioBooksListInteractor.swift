@@ -8,7 +8,8 @@
 
 import Foundation
 
-class AudioBooksListInteractor: IAudioBooksListInteractor {
+class AudioBooksListInteractor: IAudioBooksListInteractor
+{
     let dataProvider: IAudioBookDataProvider
     
     init(dataProvider: IAudioBookDataProvider) {
